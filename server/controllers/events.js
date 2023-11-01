@@ -22,9 +22,7 @@ export const createEvent = asyncHandler(async (req, res, next) => {
 export const getEventById = asyncHandler(async (req, res, next) => {
   const eventId = req.params.id;
 
-  const event = await Events.findById(eventId)
-    .populate("user")
-    .populate("plant");
+  const event = await Events.findById(eventId).populate("user");
 
   if (!event) {
     return next(new ErrorResponse(`Event not found with ID ${eventId}`, 404));
