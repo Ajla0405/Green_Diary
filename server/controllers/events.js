@@ -6,7 +6,7 @@ import ErrorResponse from "../utils/ErrorResponse.js";
 import asyncHandler from "../utils/asyncHandler.js";
 
 export const createEvent = asyncHandler(async (req, res, next) => {
-  const { plantId, eventType, eventDate, reminderDays } = req.body;
+  const { plantId, eventType, eventDate } = req.body;
   const userId = req.uid;
 
   const event = await Events.create({
@@ -14,17 +14,17 @@ export const createEvent = asyncHandler(async (req, res, next) => {
     plant: plantId,
     eventType,
     eventDate,
-    reminderDays,
   });
 
   res.status(201).json(event);
 });
 
-// Get an event by ID
 export const getEventById = asyncHandler(async (req, res, next) => {
   const eventId = req.params.id;
 
-  const event = await Events.findById(eventId);
+  const event = await Events.findById(eventId)
+    .populate("user")
+    .populate("plant");
 
   if (!event) {
     return next(new ErrorResponse(`Event not found with ID ${eventId}`, 404));
@@ -33,7 +33,6 @@ export const getEventById = asyncHandler(async (req, res, next) => {
   res.status(200).json(event);
 });
 
-// Get all events
 export const getAllEvents = asyncHandler(async (req, res, next) => {
   try {
     const events = await Events.find();
@@ -51,7 +50,6 @@ export const getAllEvents = asyncHandler(async (req, res, next) => {
   }
 });
 
-// Update an event
 export const updateEvent = asyncHandler(async (req, res, next) => {
   const eventId = req.params.id;
   const eventData = req.body;
@@ -68,7 +66,6 @@ export const updateEvent = asyncHandler(async (req, res, next) => {
   res.status(200).json(updatedEvent);
 });
 
-// Delete an event
 export const deleteEvent = asyncHandler(async (req, res, next) => {
   const eventId = req.params.id;
 
