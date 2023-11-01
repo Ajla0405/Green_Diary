@@ -4,33 +4,50 @@ import heroImage2 from "../images/heroImage2.png";
 import heroImage3 from "../images/heroImage3.png";
 import heroImage4 from "../images/heroImage4.jpg";
 import monstera4 from "../images/monstera4.jpg";
+import heroImage5 from "../images/heroImage5.png";
 
 function SlideShow() {
   return (
     <Carousel>
-      <Carousel.Item interval={1800}>
-        <img src={monstera4} alt="many succulents" width={800} />
+      <Carousel.Item interval={2400}>
+        <img
+          src={heroImage5}
+          alt="many succulents"
+          className="carousel-image-all"
+        />
         <Carousel.Caption>
           <h3>First slide label</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item interval={1000}>
-        <img src={heroImage2} alt="philodendron" width={800} />
+      <Carousel.Item interval={1600}>
+        <img
+          src={heroImage2}
+          alt="philodendron"
+          className="carousel-image-all"
+        />
         <Carousel.Caption>
           <h3>First slide label</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={800}>
-        <img src={heroImage3} alt="monstera deliciosa" width={800} />
+        <img
+          src={heroImage3}
+          alt="monstera deliciosa"
+          className="carousel-image-all"
+        />
         <Carousel.Caption>
           <h3>Second slide label</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img src={heroImage4} alt="rubber plant" width={800} />
+        <img
+          src={heroImage4}
+          alt="rubber plant"
+          className="carousel-image-all"
+        />
         <Carousel.Caption>
           <h3>Third slide label</h3>
           <p>
