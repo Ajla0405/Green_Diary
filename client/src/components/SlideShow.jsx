@@ -11,9 +11,9 @@ function SlideShow() {
     <Carousel>
       <Carousel.Item interval={2400}>
         <img
-          src={heroImage5}
+          src={heroImage1}
           alt="many succulents"
-          className="carousel-image-all"
+          className="carousel-image-1"
         />
         <Carousel.Caption>
           <h3>First slide label</h3>
@@ -21,11 +21,7 @@ function SlideShow() {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={1600}>
-        <img
-          src={heroImage2}
-          alt="philodendron"
-          className="carousel-image-all"
-        />
+        <img src={heroImage2} alt="philodendron" className="carousel-image-2" />
         <Carousel.Caption>
           <h3>First slide label</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -35,7 +31,7 @@ function SlideShow() {
         <img
           src={heroImage3}
           alt="monstera deliciosa"
-          className="carousel-image-all"
+          className="carousel-image-3"
         />
         <Carousel.Caption>
           <h3>Second slide label</h3>
@@ -43,11 +39,7 @@ function SlideShow() {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img
-          src={heroImage4}
-          alt="rubber plant"
-          className="carousel-image-all"
-        />
+        <img src={heroImage4} alt="rubber plant" className="carousel-image-4" />
         <Carousel.Caption>
           <h3>Third slide label</h3>
           <p>
