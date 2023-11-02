@@ -5,13 +5,16 @@ import { Router } from "express";
 
 const eventsRouter = express.Router();
 
-eventsRouter.route("/").post(verifyToken, eventsController.createPost);
+eventsRouter.route("/").post(verifyToken, eventsController.createEvent);
+
 eventsRouter.route("/").get(verifyToken, eventsController.getAllEvents);
+
 eventsRouter.route("/:id").get(verifyToken, eventsController.getEventById);
 
 eventsRouter
   .route("/:id/update")
   .put(verifyToken, eventsController.updateEvent);
+
 eventsRouter
   .route("/:id/delete")
   .delete(verifyToken, eventsController.deleteEvent);

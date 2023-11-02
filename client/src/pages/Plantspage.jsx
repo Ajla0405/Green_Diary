@@ -3,6 +3,7 @@ import "./PlantsPage.css";
 import imageExample from "../images/heroImage4.jpg";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const PlantsPage = () => {
   const [plants, setPlants] = useState([]);
@@ -32,9 +33,11 @@ const PlantsPage = () => {
       </div>
       <div className="grid-container" id="plants-list">
         {plants.map((plant) => (
-          <div className="grid-item" key={plant.id}>
-            <img src={plant.url}></img>
-            <p>{plant.name}</p>
+          <div className="grid-item" key={plant._id}>
+            <Link to={`/plant/${plant._id}`}>
+              <img src={plant.url} alt={plant.name} />
+              <p>{plant.name}</p>
+            </Link>
           </div>
         ))}
       </div>
