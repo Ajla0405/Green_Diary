@@ -3,6 +3,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useAuth } from "../Context/AuthProvider";
+import "./LoginForm.css";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -27,7 +28,7 @@ function LoginForm() {
       );
 
       if (response.status === 200) {
-        navigate("/");
+        navigate("/", { userPhoto: userData.userPhoto });
 
         setIsLoggedIn(true);
       }
@@ -36,8 +37,9 @@ function LoginForm() {
       toast.error(error.response.data.error || "Invalid credentials");
     }
   };
+
   return (
-    <div className="login-container ">
+    <div className="login-container">
       <div className="login-content">
         <h2 className="login-title">Login</h2>
         {error && <p className="login-error">{error}</p>}
