@@ -3,22 +3,23 @@ import Homepage from "./pages/Homepage";
 import "./index.css";
 import PlantsPage from "./pages/PlantsPage"; // Correct the import path
 import { BrowserRouter, Routes, Route } from "react-router-dom"; // Import BrowserRouter
-
+import Loginform from "./components/Loginform";
+import RegisterForm from "./components/RegisterForm";
 import SinglePage from "./pages/SinglePage";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   return (
     <div>
       {/* <Homepage /> */}
       {/* <CalendarPage /> */}
-      <BrowserRouter>
-        {" "}
-        {/* Wrap your routes with BrowserRouter */}
-        <Routes>
-          <Route path="/" element={<PlantsPage />} />
-          <Route path="/plant/:id" element={<SinglePage />} />
-        </Routes>
-      </BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<PlantsPage />} />
+        <Route path="/plant/:id" element={<SinglePage />} />
+        <Route path="/login" element={<Loginform />} />
+        <Route path="/register" element={<RegisterForm />} />
+      </Routes>
     </div>
   );
 };
