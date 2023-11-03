@@ -17,7 +17,7 @@ function LoginForm() {
 
     try {
       const response = await axios.post(
-        "http://localhost:5173/auth/login",
+        "http://localhost:8000/auth/login",
         {
           email,
           password,
@@ -28,7 +28,7 @@ function LoginForm() {
       );
 
       if (response.status === 200) {
-        navigate("/", { userPhoto: userData.userPhoto });
+        navigate("/");
 
         setIsLoggedIn(true);
       }

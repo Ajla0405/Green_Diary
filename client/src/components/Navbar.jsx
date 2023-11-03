@@ -32,7 +32,7 @@ function Navbar() {
           <li>ABOUT US</li>
           <li>
             {isLoggedIn ? (
-              <img src={userPhoto} alt="User" className="user-photo" />
+              <i className="fa-solid fa-user fa-xl" id="user-logo" />
             ) : (
               <Link to="/login">
                 <i className="fa-solid fa-user fa-xl" id="user-logo" />
