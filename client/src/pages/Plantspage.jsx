@@ -54,7 +54,7 @@ const PlantsPage = () => {
         />
 
         <button>Search By Image</button>
-        <i class="fa-regular fa-image fa-xl"></i>
+        <i className="fa-regular fa-image fa-xl"></i>
       </div>
       <div className="grid-container" id="plants-list">
         {currentItems.map((plant) => (
