@@ -36,7 +36,7 @@ const plantsSchema = new mongoose.Schema({
       required: [true, "fertilizing information is required"],
     },
   },
-  funFacts: {
+  funFact: {
     type: String,
   },
   randomQuotes: {

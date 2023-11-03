@@ -1,0 +1,58 @@
+.single-page {
+  background: #076434;
+  color: #fff;
+  height: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-part {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  margin: 10px;
+  color: #076434;
+  border-radius: 6rem;
+  width: 70%;
+}
+
+.left-side {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+}
+
+.right-side {
+  flex: 2;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.right-side img {
+  border-radius: 10px;
+}
+
+.plant-care {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 30px;
+  text-align: center;
+}
+
+.plant-care p {
+  flex: 1;
+}
+
+.plant-informations {
+  margin-top: 10px;
+  padding: 40px;
+}

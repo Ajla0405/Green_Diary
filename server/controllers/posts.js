@@ -44,12 +44,6 @@ export const getPostById = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`Post not found with ID ${postId}`, 404));
   }
 
-  // if (post.user.toString() !== req.uid) {
-  //   return next(
-  //     new ErrorResponse("You have no permission to view this post", 401)
-  //   );
-  // }
-
   res.status(200).json(post);
 });
 
