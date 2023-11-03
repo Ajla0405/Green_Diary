@@ -11,8 +11,6 @@ const RegisterForm = () => {
     username: "",
     email: "",
     password: "",
-    date: new Date(),
-    userPhoto: "../images/userPhoto.png",
   });
 
   const navigate = useNavigate();
@@ -31,7 +29,7 @@ const RegisterForm = () => {
 
       if (response.status === 201) {
         toast.success("Successfully registered! Welcome!");
-        navigate("/login", { userPhoto: user.userPhoto });
+        navigate("/login");
       }
     } catch (error) {
       toast.error(error.response.data.error || "Registration failed");
@@ -76,20 +74,6 @@ const RegisterForm = () => {
           placeholder="Password"
           value={user.password}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
-        />
-        <input
-          type="date"
-          name="date"
-          placeholder="Date of Birth"
-          value={user.date}
-          onChange={(e) => setUser({ ...user, date: e.target.value })}
-        />
-        <input
-          type="text"
-          name="userPhoto"
-          placeholder="User Photo"
-          value={user.userPhoto}
-          onChange={(e) => setUser({ ...user, userPhoto: e.target.value })}
         />
         <button type="submit">Register</button>
         <p>
