@@ -28,8 +28,8 @@ const RegisterForm = () => {
       );
 
       if (response.status === 201) {
-        toast.success("Successfully registered! Welcome!");
-        navigate("/login");
+        alert("Thanks for registering");
+        navigate("/");
       }
     } catch (error) {
       toast.error(error.response.data.error || "Registration failed");
