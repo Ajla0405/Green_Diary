@@ -6,7 +6,6 @@
 
 .grid-item {
   background-color: #faf9f8;
-  border: 1px solid #076434;
   font-size: 30px;
   text-align: center;
   width: 250px;
@@ -15,7 +14,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 0;
 }
 .grid-item img {
   width: 250px;

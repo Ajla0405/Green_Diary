@@ -11,15 +11,14 @@ import PlantsPage from "./pages/PlantsPage";
 const App = () => {
   return (
     <div>
-      {/* <Homepage /> */}
-      {/* <CalendarPage /> */}
-      <Navbar />
       <Routes>
-        <Route path="/" element={<PlantsPage />} />
+        <Route path="/" element={<Homepage />} />
+        <Route path="/plants" element={<PlantsPage />} />
         <Route path="/plant/:id" element={<SinglePage />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
       </Routes>
+      <PlantsPage />
     </div>
   );
 };

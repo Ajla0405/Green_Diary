@@ -58,8 +58,8 @@ const PlantsPage = () => {
           <div className="grid-item" key={plant._id}>
             <Link to={`/plant/${plant._id}`}>
               <img src={plant.url} alt={plant.name} />
-              <p>{plant.name}</p>
             </Link>
+            <p>{plant.name}</p>
           </div>
         ))}
       </div>
