@@ -24,10 +24,12 @@ const userSchema = new mongoose.Schema({
     required: [true, "password is required"],
     select: false,
   },
-  savedPlant: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Plants",
-  },
+  savedPlants: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Plants",
+    },
+  ],
 });
 
 export default mongoose.model("Users", userSchema);

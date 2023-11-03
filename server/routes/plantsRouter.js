@@ -7,6 +7,5 @@ const plantsRouter = express.Router();
 
 plantsRouter.route("/").get(plantsController.getAllPlants);
 plantsRouter.route("/:id").get(plantsController.getPlantById);
-plantsRouter.route("/:id").post(verifyToken, plantsController.savedPlant);
 
 export default plantsRouter;

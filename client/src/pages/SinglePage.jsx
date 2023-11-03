@@ -2,12 +2,15 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./SinglePage.css";
+import { useAuth } from "../Context/AuthProvider";
 
 const SinglePage = () => {
   const { id } = useParams();
   const [plant, setPlant] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { isLoggedIn, user } = useAuth();
+  const [isSaved, setIsSaved] = useState(false);
 
   console.log("Received ID from React Router:", id);
 
@@ -24,6 +27,25 @@ const SinglePage = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    if (isLoggedIn && user.savedPlant.includes(id)) {
+      setIsSaved(true);
+    } else {
+      setIsSaved(false);
+    }
+  }, [isLoggedIn, user.savedPlant, id]);
+
+  const handleSave = () => {
+    axios
+      .post("https://greendiary-server.onrender.com/users/savePlant/:plantId")
+      .then((response) => {
+        setIsSaved(true);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   if (loading) {
     return <p>Loading</p>;
   }
@@ -38,6 +60,11 @@ const SinglePage = () => {
         <div className="left-side">
           <h1>{plant.name}</h1>
           <p>{plant.scientificName}</p>
+          {isLoggedIn && isSaved ? (
+            <button onClick={handleSave}>Save</button>
+          ) : (
+            <></>
+          )}
         </div>
         <div className="right-side">
           <img src={plant.url} alt={plant.name} />
