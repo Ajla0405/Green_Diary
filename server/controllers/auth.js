@@ -65,14 +65,3 @@ export const savedPlant = asyncHandler(async (req, res, next) => {
   const favoritePlants = await Plants.find().populate("user");
   res.json(favoritePlants);
 });
-
-//savedPlantById
-
-export const savedPlantById = asyncHandler(async (req, res, next) => {
-  const { id } = req.params;
-
-  const favoritePlantById = await Plants.findById(id).populate("user");
-  if (!favoritePlantById)
-    throw new ErrorResponse(`Plant with ${id} does not exist`, 404);
-  res.send(favoritePlantById);
-});

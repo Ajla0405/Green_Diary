@@ -36,6 +36,17 @@ export const getPlantById = async (req, res, next) => {
   }
 };
 
+//savedPlantById
+
+export const savedPlant = asyncHandler(async (req, res, next) => {
+  const { id } = req.params;
+
+  const savedPlant = await Plants.findById(id).populate("user");
+  if (!savedPlant)
+    throw new ErrorResponse(`Plant with ${id} does not exist`, 404);
+  res.send(savedPlant);
+});
+
 // //with Login
 
 // export const getAllPlantsLogin = asyncHandler(async (req, res, next) => {

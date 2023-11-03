@@ -10,7 +10,7 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "http://localhost:8000/auth/logout",
+        "https://greendiary-server.onrender.com/auth/logout",
         {},
         { withCredentials: true }
       );
