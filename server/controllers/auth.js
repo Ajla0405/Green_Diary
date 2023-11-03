@@ -51,7 +51,6 @@ export const getUser = asyncHandler(async (req, res, next) => {
 });
 
 //logout
-
 export const logout = asyncHandler(async (req, res, next) => {
   res.clearCookie("token", {
     httpOnly: true,
