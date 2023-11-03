@@ -7,6 +7,7 @@ import plantsRouter from "./routes/plantsRouter.js";
 import authRouter from "./routes/authRouter.js";
 import postsRouter from "./routes/postsRouter.js";
 import cookieParser from "cookie-parser";
+import eventsRouter from "./routes/eventsRouter.js";
 
 const app = express();
 const port = 8000;
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use("/auth", authRouter);
 app.use("/plants", plantsRouter);
 app.use("/posts", postsRouter);
+app.use("/events", eventsRouter);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
