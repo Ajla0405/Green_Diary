@@ -48,8 +48,7 @@ export const getUser = asyncHandler(async (req, res, next) => {
   res.json(user);
 });
 
-//logout
-
+//Logout
 export const logout = asyncHandler(async (req, res, next) => {
   res.clearCookie("token");
   res.status(200).send({ status: "success" });
