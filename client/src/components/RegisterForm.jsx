@@ -20,7 +20,7 @@ const RegisterForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/auth/register",
+        "https://greendiary-server.onrender.com/auth/register",
         user,
         {
           withCredentials: true,
