@@ -138,3 +138,9 @@
   width: 100%;
   height: auto;
 }
+
+/*SLIDESHOW*/
+.carousel-image-1 {
+  width: 100vw;
+  height: auto;
+}

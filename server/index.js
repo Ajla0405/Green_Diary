@@ -21,6 +21,7 @@ app.use("/auth", authRouter);
 app.use("/plants", plantsRouter);
 app.use("/posts", postsRouter);
 app.use("/events", eventsRouter);
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
