@@ -7,10 +7,12 @@ import RegisterForm from "./components/RegisterForm";
 import SinglePage from "./pages/SinglePage";
 import Navbar from "./components/Navbar";
 import PlantsPage from "./pages/PlantsPage";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
     <div>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/plants" element={<PlantsPage />} />
@@ -18,7 +20,7 @@ const App = () => {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
       </Routes>
-      <PlantsPage />
+      <Footer />
     </div>
   );
 };
