@@ -8,8 +8,7 @@ import Plants from "../models/Plants.js";
 //Register
 
 export const register = asyncHandler(async (req, res, next) => {
-  const { firstName, lastName, username, email, password, date, userPhoto } =
-    req.body;
+  const { firstName, lastName, username, email, password } = req.body;
   const existingUser = await Users.findOne({ email });
   if (existingUser)
     throw new ErrorResponse("An account with this Email already exists", 409);
@@ -19,8 +18,6 @@ export const register = asyncHandler(async (req, res, next) => {
     lastName,
     username,
     email,
-    date,
-    userPhoto,
     password: hash,
   });
   const token = jwt.sign({ uid: newUser._id }, process.env.JWT_SECRET);
@@ -39,7 +36,12 @@ export const logIn = asyncHandler(async (req, res, next) => {
   if (!match) throw new ErrorResponse("Password is incorrect", 401);
 
   const token = jwt.sign({ uid: existingUser._id }, process.env.JWT_SECRET);
-  res.cookie("token", token, { httpOnly: true, maxAge: 1800000 });
+  res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
+    maxAge: 1800000,
+  });
   res.status(200).send({ status: "success" });
 });
 
@@ -51,8 +53,12 @@ export const getUser = asyncHandler(async (req, res, next) => {
 //logout
 
 export const logout = asyncHandler(async (req, res, next) => {
-  res.clearCookie("token");
-  res.status(200).send({ status: "success" });
+  res.clearCookie("token", {
+    httpOnly: true,
+    sameSite: "None",
+    secure: true,
+  });
+  res.status(418).send({ status: "success" });
 });
 
 //savedPlant
