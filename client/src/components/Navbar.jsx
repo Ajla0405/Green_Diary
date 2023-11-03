@@ -2,8 +2,9 @@ import React from "react";
 import logo from "../images/logo2.png";
 import { toast } from "react-toastify";
 import { useAuth } from "../Context/AuthProvider";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
+
 function Navbar() {
   const { isLoggedIn, setIsLoggedIn } = useAuth();
 
