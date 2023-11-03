@@ -1,12 +1,9 @@
-import React from "react";
-import "./PlantsPage.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import SearchByName from "../components/SearchByName";
 import Pagination from "../components/Pagination";
-
-import { Link } from "react-router-dom";
-
+import "../pages/PlantsPage.css";
 
 const PlantsPage = () => {
   const [plants, setPlants] = useState([]);
@@ -22,7 +19,6 @@ const PlantsPage = () => {
       .then((response) => {
         setPlants(response.data);
         setIsLoading(false);
-        console.log(response.data);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -44,6 +40,7 @@ const PlantsPage = () => {
   if (isLoading) {
     return <p>Loading...</p>;
   }
+
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredPlants.slice(indexOfFirstItem, indexOfLastItem);
@@ -55,24 +52,14 @@ const PlantsPage = () => {
           searchQuery={searchQuery}
           onSearchQueryChange={setSearchQuery}
         />
-
-        <button>Search By Image</button>
-        <i className="fa-regular fa-image fa-xl"></i>
       </div>
       <div className="grid-container" id="plants-list">
-
         {currentItems.map((plant) => (
-          <div className="grid-item" key={plant._id}>
-            <img src={plant.url} alt={plant.name} />
-            <p>{plant.name}</p>
-
-        {plants.map((plant) => (
           <div className="grid-item" key={plant._id}>
             <Link to={`/plant/${plant._id}`}>
               <img src={plant.url} alt={plant.name} />
               <p>{plant.name}</p>
             </Link>
-
           </div>
         ))}
       </div>
