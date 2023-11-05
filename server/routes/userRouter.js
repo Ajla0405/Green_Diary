@@ -7,7 +7,7 @@ const userRouter = express.Router();
 userRouter.route("/").get(userController.getUser);
 userRouter.route("/:id").get(userController.getUserById);
 userRouter
-  .route("/savePlant/:plantId")
+  .route("/savedPlant/:plantId")
   .post(verifyToken, userController.savePlantToUser);
 
 export default userRouter;

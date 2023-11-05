@@ -8,40 +8,38 @@
   background-color: #faf9f8;
   font-size: 30px;
   text-align: center;
-  width: 250px;
-  height: 280px;
+  width: 280px;
+  height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 30px;
 }
 .grid-item img {
   width: 250px;
   height: 250px;
+  padding-bottom: 1rem;
 }
 .grid-item p {
   font-family: "roboto", sans-serif;
   font-size: 1rem;
   text-align: center;
   font-weight: bold;
-  width: 250px;
-  max-height: 50px;
-  background-color: #61a03a;
-  color: #faf9f8;
-  padding-top: 0.5rem;
-  position: absolute;
-  margin-top: 250px;
+  color: #076434;
+  position: relative;
 }
 #plants-container {
-  background-image: url("../images/plants-background2.png");
+  /* background-image: url("../images/plants-background2.png");
   background-repeat: repeat;
-  background-size: cover;
+  background-size: cover; */
   width: 100vw;
-  max-height: 1000px;
+  max-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  background-color: #076434;
 }
 #plants-search {
   margin: 5rem 5rem;
