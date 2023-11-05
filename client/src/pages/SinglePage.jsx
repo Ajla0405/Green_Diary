@@ -9,14 +9,12 @@ const SinglePage = () => {
   const [plant, setPlant] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { isLoggedIn, user } = useAuth();
+  const { authToken } = useAuth();
   const [isSaved, setIsSaved] = useState(false);
-
-  console.log("Received ID from React Router:", id);
 
   useEffect(() => {
     axios
-      .get(`https://greendiary-server.onrender.com/plants/${id}`)
+      .get(`http://localhost:8000/plants/${id}`)
       .then((response) => {
         setPlant(response.data);
         setLoading(false);
@@ -28,16 +26,30 @@ const SinglePage = () => {
   }, [id]);
 
   useEffect(() => {
-    if (isLoggedIn && user.savedPlant.includes(id)) {
-      setIsSaved(true);
-    } else {
-      setIsSaved(false);
-    }
-  }, [isLoggedIn, user.savedPlant, id]);
+    // Fetch the user's data, including the list of saved plants
+    axios
+      .get("http://localhost:8000/auth/me", {
+        headers: { Authorization: `Bearer ${authToken}` },
+      })
+      .then((response) => {
+        const userData = response.data;
+        // Check if the plant ID is in the user's list of saved plants
+        if (userData.savedPlant.includes(id)) {
+          setIsSaved(true);
+        } else {
+          setIsSaved(false);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, [id, authToken]);
 
   const handleSave = () => {
     axios
-      .post("https://greendiary-server.onrender.com/users/savePlant/:plantId")
+      .post(`http://localhost:8000/users/savedPlant/${id}`, null, {
+        headers: { Authorization: `Bearer ${authToken}` },
+      })
       .then((response) => {
         setIsSaved(true);
       })
@@ -47,7 +59,7 @@ const SinglePage = () => {
   };
 
   if (loading) {
-    return <p>Loading</p>;
+    return <p>Loading...</p>;
   }
 
   if (error) {
@@ -60,10 +72,10 @@ const SinglePage = () => {
         <div className="left-side">
           <h1>{plant.name}</h1>
           <p>{plant.scientificName}</p>
-          {isLoggedIn && isSaved ? (
-            <button onClick={handleSave}>Save</button>
+          {isSaved ? (
+            <button disabled>Saved</button>
           ) : (
-            <></>
+            <button onClick={handleSave}>Save</button>
           )}
         </div>
         <div className="right-side">

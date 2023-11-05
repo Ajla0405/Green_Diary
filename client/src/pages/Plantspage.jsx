@@ -15,7 +15,7 @@ const PlantsPage = () => {
 
   useEffect(() => {
     axios
-      .get("https://greendiary-server.onrender.com/plants")
+      .get("http://localhost:8000/plants")
       .then((response) => {
         setPlants(response.data);
         setIsLoading(false);
@@ -58,9 +58,9 @@ const PlantsPage = () => {
         {currentItems.map((plant) => (
           <div className="grid-item" key={plant._id}>
             <Link to={`/plant/${plant._id}`}>
+              <p>{plant.name}</p>
               <img src={plant.url} alt={plant.name} />
             </Link>
-            <p>{plant.name}</p>
           </div>
         ))}
       </div>

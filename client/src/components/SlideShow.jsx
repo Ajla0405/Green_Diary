@@ -2,9 +2,7 @@ import Carousel from "react-bootstrap/Carousel";
 import heroImage1 from "../images/heroImage1.jpg";
 import heroImage2 from "../images/heroImage2.png";
 import heroImage3 from "../images/heroImage3.png";
-import heroImage4 from "../images/heroImage4.jpg";
-import monstera4 from "../images/monstera4.jpg";
-import heroImage5 from "../images/heroImage5.png";
+import heroImage4 from "../images/heroImage4.png";
 
 function SlideShow() {
   return (
@@ -13,7 +11,7 @@ function SlideShow() {
         <img
           src={heroImage1}
           alt="many succulents"
-          className="carousel-image-1"
+          className="carousel-image-all"
         />
         <Carousel.Caption>
           <h3>First slide label</h3>
@@ -21,7 +19,11 @@ function SlideShow() {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={1600}>
-        <img src={heroImage2} alt="philodendron" className="carousel-image-2" />
+        <img
+          src={heroImage2}
+          alt="philodendron"
+          className="carousel-image-all"
+        />
         <Carousel.Caption>
           <h3>First slide label</h3>
           <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
@@ -31,7 +33,7 @@ function SlideShow() {
         <img
           src={heroImage3}
           alt="monstera deliciosa"
-          className="carousel-image-3"
+          className="carousel-image-all"
         />
         <Carousel.Caption>
           <h3>Second slide label</h3>
@@ -39,7 +41,11 @@ function SlideShow() {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img src={heroImage4} alt="rubber plant" className="carousel-image-4" />
+        <img
+          src={heroImage4}
+          alt="rubber plant"
+          className="carousel-image-all"
+        />
         <Carousel.Caption>
           <h3>Third slide label</h3>
           <p>
