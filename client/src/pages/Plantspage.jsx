@@ -52,7 +52,10 @@ const PlantsPage = () => {
           searchQuery={searchQuery}
           onSearchQueryChange={setSearchQuery}
         />
-        <button>Search By Image</button>
+        <button>
+          <Link to="/plantIdentifier">Search by Image</Link>
+        </button>
+        <i className="fa-solid fa-image fa-xl"></i>
       </div>
       <div className="grid-container" id="plants-list">
         {currentItems.map((plant) => (
