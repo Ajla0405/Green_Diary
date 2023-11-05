@@ -15,7 +15,7 @@ const PlantsPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/plants")
+      .get("https://greendiary-server.onrender.com/plants")
       .then((response) => {
         setPlants(response.data);
         setIsLoading(false);
@@ -52,14 +52,15 @@ const PlantsPage = () => {
           searchQuery={searchQuery}
           onSearchQueryChange={setSearchQuery}
         />
+        <button>Search By Image</button>
       </div>
       <div className="grid-container" id="plants-list">
         {currentItems.map((plant) => (
           <div className="grid-item" key={plant._id}>
             <Link to={`/plant/${plant._id}`}>
               <img src={plant.url} alt={plant.name} />
-              <p>{plant.name}</p>
             </Link>
+            <p>{plant.name}</p>
           </div>
         ))}
       </div>

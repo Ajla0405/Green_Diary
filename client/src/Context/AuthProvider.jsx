@@ -14,9 +14,12 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const checkUser = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/auth/me", {
-          withCredentials: true,
-        });
+        const response = await axios.get(
+          "https://greendiary-server.onrender.com/auth/me",
+          {
+            withCredentials: true,
+          }
+        );
 
         if (response.data && response.data._id) {
           setIsLoggedIn(true);

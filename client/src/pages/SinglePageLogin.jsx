@@ -1,7 +1,5 @@
 import React from "react";
 
-const SinglePageLogin = () => {
+export const SinglePageLogin = () => {
   return <div>SinglePageLogin</div>;
 };
-
-export default SinglePageLogin;

@@ -24,18 +24,12 @@ const userSchema = new mongoose.Schema({
     required: [true, "password is required"],
     select: false,
   },
-  date: {
-    type: Date,
-    default: Date.now,
-  },
-  userPhoto: {
-    type: String,
-    default: "../images/userPhoto.png",
-  },
-  savedPlant: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Plants",
-  },
+  savedPlants: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Plants",
+    },
+  ],
 });
 
 export default mongoose.model("Users", userSchema);
