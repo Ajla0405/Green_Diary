@@ -11,7 +11,7 @@ function Navbar() {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "https://greendiary-server.onrender.com/auth/logout",
+        "http://localhost:8000/auth/logout",
         {},
         { withCredentials: true }
       );
@@ -22,15 +22,22 @@ function Navbar() {
   };
   return (
     <div id="navbar-container" className="row">
-      <div id="navbar-icon" className="col-md-4">
-        <img src={logo} alt="green diary logo" />
+      <div id="navbar-icon" className="col-md-6">
+        <Link to="/">
+          <img src={logo} alt="green diary logo" />
+        </Link>
       </div>
-      <div id="navbar-menu" className="col-md-8">
+      <div id="navbar-menu" className="col-md-6">
         <ul>
-          <li>PLANTS</li>
-          <li>PLANT IDENTIFIER</li>
-          <li>GIFT IDEAS</li>
-          <li>ABOUT US</li>
+          <li>
+            <Link to="/plants">PLANTS</Link>
+          </li>
+          <li>
+            <Link to="/plantIdentifier">PLANT IDENTIFIER</Link>
+          </li>
+          <li>
+            <Link to="/aboutUs">ABOUT US</Link>
+          </li>
           <li>
             {isLoggedIn ? (
               <i className="fa-solid fa-user fa-xl" id="user-logo" />

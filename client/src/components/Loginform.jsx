@@ -17,7 +17,7 @@ function LoginForm() {
 
     try {
       const response = await axios.post(
-        "https://greendiary-server.onrender.com/auth/login",
+        "http://localhost:8000/auth/login",
         {
           email,
           password,
