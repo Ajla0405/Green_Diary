@@ -37,3 +37,20 @@ export const savePlantToUser = asyncHandler(async (req, res, next) => {
 
   res.status(200).json(user);
 });
+
+export const unsavePlantFromUser = asyncHandler(async (req, res, next) => {
+  const userId = req.uid;
+  const plantId = req.params.plantId;
+
+  const user = await Users.findByIdAndUpdate(
+    userId,
+    { $pull: { savedPlants: plantId } },
+    { new: true, runValidators: true }
+  ).populate("savedPlants");
+
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  res.status(200).json(user);
+});

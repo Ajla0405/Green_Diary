@@ -9,5 +9,8 @@ userRouter.route("/:id").get(userController.getUserById);
 userRouter
   .route("/savedPlant/:plantId")
   .post(verifyToken, userController.savePlantToUser);
+userRouter
+  .route("/unsavePlant/:plantId")
+  .delete(verifyToken, userController.unsavePlantFromUser);
 
 export default userRouter;
