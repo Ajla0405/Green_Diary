@@ -15,8 +15,6 @@ import MyPlantPage from "./pages/MyPlantPage";
 import { useAuth } from "./Context/AuthProvider";
 
 const App = () => {
-  const { userData } = useAuth();
-  console.log(userData.savedPlants);
   return (
     <div>
       <Navbar />
