@@ -57,7 +57,7 @@ export const logout = asyncHandler(async (req, res, next) => {
     sameSite: "None",
     secure: true,
   });
-  res.status(418).send({ status: "success" });
+  res.status(200).send({ status: "success" });
 });
 
 //savedPlant

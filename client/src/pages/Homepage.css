@@ -9,6 +9,8 @@
   color: #076434;
 }
 #navbar-menu a:visited,
+a:link,
+a:hover,
 a:active {
   color: #076434;
 }
@@ -255,6 +257,8 @@ p {
   margin-top: 3rem;
 }
 .register-now a:visited,
+a:link,
+a:hover,
 a:active {
   color: #076434;
 }
@@ -306,6 +310,8 @@ a:active {
   font-weight: 900;
 }
 .content-page1 a:visited,
-a:active {
+a:active,
+a:link,
+a:hover {
   color: #faf9f8;
 }

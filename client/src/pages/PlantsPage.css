@@ -65,7 +65,9 @@
   text-align: left;
   padding-left: 1.5rem;
 }
-#plants-search a:visited,
+#plants-search a:link,
+a:hover,
+a:visited,
 a:active {
   color: #5f7a6f;
 }
