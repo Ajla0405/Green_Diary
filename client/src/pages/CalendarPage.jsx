@@ -187,105 +187,105 @@
 // }
 
 // export default CalendarPage;
-import React, { useState } from "react";
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import interactionPlugin from "@fullcalendar/interaction";
+// import React, { useState } from "react";
+// import FullCalendar from "@fullcalendar/react";
+// import dayGridPlugin from "@fullcalendar/daygrid";
+// import interactionPlugin from "@fullcalendar/interaction";
 
-function CalendarPage() {
-  const [events, setEvents] = useState([]);
-  const [selectedDate, setSelectedDate] = useState(null);
-  const [eventTitle, setEventTitle] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
+// function CalendarPage() {
+//   const [events, setEvents] = useState([]);
+//   const [selectedDate, setSelectedDate] = useState(null);
+//   const [eventTitle, setEventTitle] = useState("");
+//   const [isEditing, setIsEditing] = useState(false);
 
-  const handleDateClick = (info) => {
-    // Handle date clicks to add new events
-    setSelectedDate(info.date);
-    setEventTitle("");
-    setIsEditing(true);
-  };
+//   const handleDateClick = (info) => {
+//     // Handle date clicks to add new events
+//     setSelectedDate(info.date);
+//     setEventTitle("");
+//     setIsEditing(true);
+//   };
 
-  const handleEventClick = (info) => {
-    // Handle event clicks (edit or delete)
-    setSelectedDate(info.event.start);
-    setEventTitle(info.event.title);
-    setIsEditing(true);
-  };
+//   const handleEventClick = (info) => {
+//     // Handle event clicks (edit or delete)
+//     setSelectedDate(info.event.start);
+//     setEventTitle(info.event.title);
+//     setIsEditing(true);
+//   };
 
-  const handleSave = () => {
-    if (eventTitle) {
-      const newEvent = {
-        title: eventTitle,
-        start: selectedDate,
-      };
+//   const handleSave = () => {
+//     if (eventTitle) {
+//       const newEvent = {
+//         title: eventTitle,
+//         start: selectedDate,
+//       };
 
-      const updatedEvents = [...events];
+//       const updatedEvents = [...events];
 
-      // Find an existing event with the same date (if any)
-      const existingEventIndex = updatedEvents.findIndex((event) =>
-        event.start.isSame(selectedDate, "day")
-      );
+//       // Find an existing event with the same date (if any)
+//       const existingEventIndex = updatedEvents.findIndex((event) =>
+//         event.start.isSame(selectedDate, "day")
+//       );
 
-      if (existingEventIndex !== -1) {
-        // Update the existing event
-        updatedEvents[existingEventIndex] = newEvent;
-      } else {
-        // Add the new event
-        updatedEvents.push(newEvent);
-      }
+//       if (existingEventIndex !== -1) {
+//         // Update the existing event
+//         updatedEvents[existingEventIndex] = newEvent;
+//       } else {
+//         // Add the new event
+//         updatedEvents.push(newEvent);
+//       }
 
-      setEvents(updatedEvents);
+//       setEvents(updatedEvents);
 
-      setIsEditing(false);
-    }
-  };
+//       setIsEditing(false);
+//     }
+//   };
 
-  const handleDelete = () => {
-    const updatedEvents = events.filter(
-      (event) => !event.start.isSame(selectedDate, "day")
-    );
-    setEvents(updatedEvents);
+//   const handleDelete = () => {
+//     const updatedEvents = events.filter(
+//       (event) => !event.start.isSame(selectedDate, "day")
+//     );
+//     setEvents(updatedEvents);
 
-    setIsEditing(false);
-  };
+//     setIsEditing(false);
+//   };
 
-  return (
-    <div>
-      <FullCalendar
-        plugins={[dayGridPlugin, interactionPlugin]}
-        initialView="dayGridMonth"
-        headerToolbar={{
-          start: "today prev,next",
-          center: "title",
-          end: "dayGridMonth,dayGridWeek,dayGridDay",
-        }}
-        events={events}
-        dateClick={handleDateClick}
-        eventClick={handleEventClick}
-      />
+//   return (
+//     <div>
+//       <FullCalendar
+//         plugins={[dayGridPlugin, interactionPlugin]}
+//         initialView="dayGridMonth"
+//         headerToolbar={{
+//           start: "today prev,next",
+//           center: "title",
+//           end: "dayGridMonth,dayGridWeek,dayGridDay",
+//         }}
+//         events={events}
+//         dateClick={handleDateClick}
+//         eventClick={handleEventClick}
+//       />
 
-      {isEditing && (
-        <div>
-          <form>
-            <label>
-              Event Title:
-              <input
-                type="text"
-                value={eventTitle}
-                onChange={(e) => setEventTitle(e.target.value)}
-              />
-            </label>
-            <button type="button" onClick={handleSave}>
-              Save
-            </button>
-            <button type="button" onClick={handleDelete}>
-              Delete
-            </button>
-          </form>
-        </div>
-      )}
-    </div>
-  );
-}
+//       {isEditing && (
+//         <div>
+//           <form>
+//             <label>
+//               Event Title:
+//               <input
+//                 type="text"
+//                 value={eventTitle}
+//                 onChange={(e) => setEventTitle(e.target.value)}
+//               />
+//             </label>
+//             <button type="button" onClick={handleSave}>
+//               Save
+//             </button>
+//             <button type="button" onClick={handleDelete}>
+//               Delete
+//             </button>
+//           </form>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
 
-export default CalendarPage;
+// export default CalendarPage;
