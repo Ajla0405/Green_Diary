@@ -25,26 +25,6 @@ const SinglePage = () => {
       });
   }, [id]);
 
-  useEffect(() => {
-    // Fetch the user's data, including the list of saved plants
-    axios
-      .get("http://localhost:8000/auth/me", {
-        headers: { Authorization: `Bearer ${authToken}` },
-      })
-      .then((response) => {
-        const userData = response.data;
-        // Check if the plant ID is in the user's list of saved plants
-        if (userData.savedPlant.includes(id)) {
-          setIsSaved(true);
-        } else {
-          setIsSaved(false);
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, [id, authToken]);
-
   const handleSave = () => {
     axios
       .post(`http://localhost:8000/users/savedPlant/${id}`, null, {

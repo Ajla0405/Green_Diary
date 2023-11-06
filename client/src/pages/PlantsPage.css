@@ -50,6 +50,7 @@
 }
 #plants-search i {
   color: #faf9f8;
+  padding-left: 1rem;
 }
 #plants-search button {
   margin-left: 5rem;
@@ -61,6 +62,12 @@
   color: #5f7a6f;
   font-family: "Raleway", sans-serif;
   font-weight: 900;
+  text-align: left;
+  padding-left: 1.5rem;
+}
+#plants-search a:visited,
+a:active {
+  color: #5f7a6f;
 }
 /*SEARCH FUNCTION: SEARCH BY NAME*/
 
@@ -73,7 +80,6 @@
   color: #076434;
   font-family: "Raleway", sans-serif;
   font-weight: 900;
-  margin-right: 1rem;
 }
 
 /*PAGINATION */
@@ -92,8 +98,7 @@
   margin: 5rem 10rem;
 }
 
-/*SEARCH BY IMAGE*/
-.fa-regular {
+/*SEARCH BY NAME */
+#input-query {
   padding-left: 1rem;
-  padding-top: 0.5rem;
 }

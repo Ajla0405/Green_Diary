@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./PlantIdentifier.css";
+import { Link } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const PlantIdentifier = () => {
   const [selectedFiles, setSelectedFiles] = useState([]);
   const [results, setResults] = useState(null);
   const [imageURLs, setImageURLs] = useState([]);
+  const [details, setDetails] = useState(false);
+  // const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const files = Array.from(event.target.files);
@@ -58,47 +62,66 @@ const PlantIdentifier = () => {
 
       console.log("Success:", response.data);
       setResults(response.data);
+
+      // if (response.data.suggestions.length > 0) {
+      //   navigate(`/plant/${response.data.suggestions[0].plant_id}`);
+      // }
     } catch (error) {
       console.error("Error:", error);
     }
   };
 
+  const toggleDetails = () => {
+    setDetails(!details);
+  };
+
   return (
     <div className="plant-identifier">
-      {/* <div className="indentifier-guidance">
+      <div className="identifier-guidance">
         <h1>Plant Identification</h1>
         <h6>What's the name of this plant?</h6>
-        <p>Step 1: Click to choose image from your device</p>
+        <p>Step 1: Click to choose an image from your device</p>
         <p>Step 2: Click 'Identify" and wait for a second</p>
-        <p>
-          Step 3: Click on details in one of three predictions to discover more
-          about your plant
-        </p>
-      </div> */}
-      <div className="identifier-image-upload">
-        <form>
-          <input type="file" multiple onChange={handleFileChange} />
-          <button type="button" onClick={sendIdentification}>
-            Identify
-          </button>
-        </form>
-        {imageURLs.length > 0 && (
-          <div className="uploaded-images">
-            {imageURLs.map((url, index) => (
-              <img key={index} src={url} alt={`Uploaded Image ${index + 1}`} />
-            ))}
+        <p>Step 3: Click on "See Details" to discover more about your plant</p>
+      </div>
+      <div id="upload-and-result">
+        <div id="identifier-image-upload">
+          <form>
+            <input type="file" multiple onChange={handleFileChange} />
+            <button type="button" onClick={sendIdentification}>
+              Identify
+            </button>
+          </form>
+          {imageURLs.length > 0 && (
+            <div id="uploaded-images">
+              {imageURLs.map((url, index) => (
+                <img
+                  key={index}
+                  src={url}
+                  alt={`Uploaded Image ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
+        {results && (
+          <div id="plant-suggestion">
+            <h4>Plants we suggested:</h4>
+            <div id="plant-suggestion-details">
+              <h6>Name: {results.suggestions[0].plant_details.common_names}</h6>
+              <p>Scientific name: {results.suggestions[0].plant_name}</p>
+              <button onClick={toggleDetails}>
+                {details ? "Hide Details" : "See details"}
+              </button>
+              {details && (
+                <p>
+                  {results.suggestions[0].plant_details.wiki_description.value}
+                </p>
+              )}
+            </div>
           </div>
         )}
       </div>
-      {results && (
-        <div className="plant-suggestion">
-          <h3>Plants we suggested:</h3>
-          <div>
-            <h3>Name: {results.suggestions[0].plant_details.common_names}</h3>
-            <p>Scientific name:{results.suggestions[0].plant_name}</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

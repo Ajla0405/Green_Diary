@@ -6,6 +6,7 @@ const SearchByName = ({ searchQuery, onSearchQueryChange }) => {
     <div className="search-function-component">
       <form onSubmit={(e) => e.preventDefault()}>
         <input
+          id="input-query"
           type="search"
           placeholder="  Search Plant By Name"
           value={searchQuery}
