@@ -315,3 +315,54 @@ a:link,
 a:hover {
   color: #faf9f8;
 }
+
+@media (max-width: 768px) {
+  #navbar-menu {
+    padding-top: 1rem;
+  }
+
+  #navbar-icon img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .aboutUs-first {
+    background-size: 20%;
+    padding-bottom: 7rem;
+  }
+
+  .aboutUs-second {
+    padding: 2rem;
+  }
+
+  .offer-container {
+    flex-direction: column;
+  }
+
+  .offer-caring {
+    margin: 1rem 0;
+  }
+
+  .offer-caring p {
+    text-align: center;
+  }
+
+  .offer-caring h5,
+  a,
+  p {
+    margin-top: 1rem;
+  }
+
+  .content-page1 {
+    margin-left: 5%;
+  }
+
+  .content-page1 p {
+    width: 80%;
+    border-radius: 15px;
+  }
+
+  .content-page1 button {
+    width: 100%;
+  }
+}

@@ -104,3 +104,38 @@ a:active {
 #input-query {
   padding-left: 1rem;
 }
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: auto auto;
+    gap: 20px;
+  }
+
+  .grid-item {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+
+  .grid-item img {
+    width: 100%;
+    max-width: none;
+  }
+
+  #plants-search {
+    margin: 2rem 2rem;
+  }
+
+  #plants-search button {
+    width: 100%;
+    margin: 0;
+  }
+
+  .pagination li {
+    margin: 1rem 0;
+  }
+
+  #input-query {
+    width: 100%;
+  }
+}
