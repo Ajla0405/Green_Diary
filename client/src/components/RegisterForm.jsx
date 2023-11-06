@@ -28,7 +28,7 @@ const RegisterForm = () => {
       );
 
       if (response.status === 201) {
-        alert("Thanks for registering");
+        alert("Successfully registered! Welcome!");
         navigate("/");
       }
     } catch (error) {
