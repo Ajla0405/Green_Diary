@@ -27,8 +27,8 @@ const SinglePage = () => {
 
   const handleSave = () => {
     axios
-      .post(`http://localhost:8000/users/savedPlant/${id}`, null, {
-        headers: { Authorization: `Bearer ${authToken}` },
+      .post(`http://localhost:8000/users/savedPlant/${id}`, plant, {
+        withCredentials: true,
       })
       .then((response) => {
         setIsSaved(true);
