@@ -3,22 +3,10 @@ import { toast } from "react-toastify";
 import { useAuth } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import DropdownLogin from "./DropDownLogin";
 
 function Navbar() {
   const { isLoggedIn, setIsLoggedIn } = useAuth();
-
-  const handleLogout = async () => {
-    try {
-      await axios.post(
-        "http://localhost:8000/auth/logout",
-        {},
-        { withCredentials: true }
-      );
-      setIsLoggedIn(false);
-    } catch (error) {
-      toast.error("Error logging out");
-    }
-  };
   return (
     <div id="navbar-container" className="row">
       <div id="navbar-icon" className="col-md-6">
@@ -37,18 +25,16 @@ function Navbar() {
           <li>
             <Link to="/aboutUs">ABOUT US</Link>
           </li>
-          <li>
-            {isLoggedIn ? (
-              <i className="fa-solid fa-user fa-xl" id="user-logo" />
-            ) : (
+          {!isLoggedIn && (
+            <li>
               <Link to="/login">
                 <i className="fa-solid fa-user fa-xl" id="user-logo" />
               </Link>
-            )}
-          </li>
+            </li>
+          )}
           {isLoggedIn && (
             <li>
-              <button onClick={handleLogout}>Logout</button>
+              <DropdownLogin />
             </li>
           )}
         </ul>

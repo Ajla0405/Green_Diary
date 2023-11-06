@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "../Context/AuthProvider";
+import "./Profile.css";
 
 const Profile = () => {
   const { authToken } = useAuth();
@@ -8,33 +9,36 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/auth/me", {
-        headers: {
-          Authorization: `Bearer ${authToken}`,
-        },
-      })
+      .get("http://localhost:8000/auth/me", { withCredentials: true })
       .then((response) => {
         setUser(response.data);
       })
       .catch((error) => {
         console.error("Error fetching user data:", error);
       });
-  }, [authToken]);
+  }, []);
 
   return (
-    <div>
-      <h1>User Profile</h1>
+    <div className="my-profile">
+      <h4>My profile</h4>
       {user ? (
         <div>
-          <p>First Name: {user.firstName}</p>
-          <p>Last Name: {user.lastName}</p>
-          <p>Email: {user.email}</p>
-          <h2>Saved Plants</h2>
-          <ul>
-            {user.savedPlants.map((plant) => (
-              <li key={plant._id}>{plant.name}</li>
-            ))}
-          </ul>
+          <div className="my-profile-para">
+            <p>First Name: </p>
+            <p>{user.firstName}</p>
+          </div>
+          <div className="my-profile-para">
+            <p>Last Name: </p>
+            <p>{user.lastName}</p>
+          </div>
+          <div className="my-profile-para">
+            <p>Email: </p>
+            <p>{user.email}</p>
+          </div>
+          <div className="my-profile-para">
+            <p>Username: </p>
+            <p>{user.username}</p>
+          </div>
         </div>
       ) : (
         <p>Loading user data...</p>
