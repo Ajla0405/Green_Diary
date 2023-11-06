@@ -48,12 +48,12 @@ const MyPlantPage = () => {
   }
 
   return (
-    <div className="my-plants-page">
-      <h1>Your Saved Plants</h1>
-      <ul>
+    <div id="my-plants-page">
+      <h1>My Plants</h1>
+      <ul className="grid-container">
         {savedPlants.map((savedPlant) => (
-          <li key={savedPlant._id}>
-            <h3>{savedPlant.name}</h3>
+          <li className="grid-item" key={savedPlant._id}>
+            <h6>{savedPlant.name}</h6>
             <Link to={`/plant/${savedPlant._id}`}>
               <img src={savedPlant.url} alt={savedPlant.name} />
             </Link>

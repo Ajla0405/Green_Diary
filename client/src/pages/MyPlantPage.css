@@ -1,0 +1,39 @@
+#my-plants-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #076434;
+}
+
+#my-plants-item {
+  display: grid;
+  gap: 100px 150px;
+  grid-template-columns: auto auto auto;
+}
+
+.grid-item {
+  background-color: #faf9f8;
+  font-size: 30px;
+  text-align: center;
+  width: 280px;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+}
+.grid-item img {
+  width: 250px;
+  height: 250px;
+  padding-bottom: 1rem;
+}
+.grid-item p {
+  font-family: "roboto", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: bold;
+  color: #076434;
+  position: relative;
+}
