@@ -13,7 +13,10 @@ import AboutUs from "./components/AboutUs";
 import PlantIdentifier from "./pages/PlantIdentifier";
 import MyPlantPage from "./pages/MyPlantPage";
 import { useAuth } from "./Context/AuthProvider";
+import SinglePageLogin from "./pages/SinglePageLogin";
+import Modal from "react-modal";
 
+Modal.setAppElement("#root");
 const App = () => {
   const { userData } = useAuth();
   console.log(userData.savedPlants);
@@ -30,6 +33,7 @@ const App = () => {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/myplants" element={<MyPlantPage />} />
+        <Route path="/singlePageLogin/:id" element={<SinglePageLogin />} />
       </Routes>
       <Footer />
     </div>

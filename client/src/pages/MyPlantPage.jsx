@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../Context/AuthProvider";
 import "./MyPlantPage.css";
+import { Link } from "react-router-dom";
 
 const MyPlantPage = () => {
   const { userData } = useAuth();
@@ -52,8 +53,10 @@ const MyPlantPage = () => {
       <ul>
         {savedPlants.map((savedPlant) => (
           <li key={savedPlant._id}>
-            <h3>{savedPlant.name}</h3>
-            <img src={savedPlant.url} alt={savedPlant.name} />
+            <Link to={`/singlePageLogin/${savedPlant._id}`}>
+              <h3>{savedPlant.name}</h3>
+              <img src={savedPlant.url} alt={savedPlant.name} />
+            </Link>
           </li>
         ))}
       </ul>
