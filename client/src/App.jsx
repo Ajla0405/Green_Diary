@@ -11,8 +11,12 @@ import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 import AboutUs from "./components/AboutUs";
 import PlantIdentifier from "./pages/PlantIdentifier";
+import MyPlantPage from "./pages/MyPlantPage";
+import { useAuth } from "./Context/AuthProvider";
 
 const App = () => {
+  const { userData } = useAuth();
+  console.log(userData.savedPlants);
   return (
     <div>
       <Navbar />
@@ -25,6 +29,7 @@ const App = () => {
         <Route path="/plant/:id" element={<SinglePage />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
+        <Route path="/myplants" element={<MyPlantPage />} />
       </Routes>
       <Footer />
     </div>
