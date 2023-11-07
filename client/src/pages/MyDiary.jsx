@@ -18,18 +18,15 @@ const MyDiary = () => {
 
   useEffect(() => {
     if (isLoggedIn) {
-      fetchPosts();
+      fetchPosts(user?._id);
     }
-  }, [isLoggedIn]);
+  }, [isLoggedIn, user]);
 
-  const fetchPosts = async () => {
+  const fetchPosts = async (userId) => {
     try {
-      const response = await axios.get(
-        `http://localhost:8000/posts/user/${user._id}`,
-        {
-          withCredentials: true,
-        }
-      );
+      const response = await axios.get(`http://localhost:8000/posts`, {
+        withCredentials: true,
+      });
 
       if (response.status === 200) {
         setPosts(response.data);
@@ -56,7 +53,7 @@ const MyDiary = () => {
           content: "",
         });
         setSending(false);
-        fetchPosts();
+        fetchPosts(user._id);
       }
     } catch (error) {
       setSending(false);
@@ -78,7 +75,7 @@ const MyDiary = () => {
 
       if (response.status === 200) {
         setEditPostId(null);
-        fetchPosts();
+        fetchPosts(user._id);
       }
     } catch (error) {
       alert(error.response.data.error);
@@ -95,7 +92,7 @@ const MyDiary = () => {
       );
 
       if (response.status === 200) {
-        fetchPosts();
+        fetchPosts(user._id);
       }
     } catch (error) {
       alert(error.response.data.error);
@@ -111,12 +108,12 @@ const MyDiary = () => {
     );
 
   return (
-    <div className="diary-complete">
+    <div id="diary-complete">
       {isLoggedIn && (
         <>
           <h2>Welcome to my diary!</h2>
-          <form className="diary-submit" onSubmit={handleSubmit}>
-            <div className="diary-title">
+          <form id="diary-submit" onSubmit={handleSubmit}>
+            <div id="diary-title">
               <label>Title:</label>
               <input
                 type="text"
@@ -128,23 +125,23 @@ const MyDiary = () => {
                 placeholder="What's the name of your plant?"
               />
             </div>
-            <div className="diary-content">
-              <label>Content</label>
-              <input
+            <div id="diary-content">
+              <label>Content: </label>
+              <textarea
                 type="text"
                 name="content"
                 value={postData.content}
                 onChange={(e) =>
                   setPostData({ ...postData, content: e.target.value })
                 }
-                placeholder="What are you thinking?"
+                placeholder="Write down the memory with your plants?"
               />
             </div>
             <button type="submit">Post it!</button>
           </form>
-          <div className="diary-show">
+          <div id="diary-show">
             {posts.map((post) => (
-              <div className="diary-text-box" key={post._id}>
+              <div id="diary-text-box" key={post._id}>
                 {editPostId === post._id ? (
                   <>
                     <input
@@ -173,7 +170,7 @@ const MyDiary = () => {
                   </>
                 ) : (
                   <>
-                    <h2>{post.title}</h2>
+                    <h6>{post.title}</h6>
                     <p>{post.content}</p>
                     <p>{format(new Date(post.date), "MMM dd, yyyy @ HH:mm")}</p>
                     <button onClick={() => handleEditPost(post._id)}>
