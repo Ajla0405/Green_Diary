@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import Datetime from "react-datetime";
 import moment from "moment";
-import "./calendar-styles.css"; // Import your CSS file
+import "./calendar-style.css"; // Import your CSS file
 
 const AddEventModal = ({ isOpen, onClose, onEventAdded }) => {
   const [eventType, setEventType] = useState("");

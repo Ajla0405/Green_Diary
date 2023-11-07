@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import Datetime from "react-datetime";
 import moment from "moment";
+import "./calendar-style.css";
 
 const EditEventModal = ({
   isOpen,
