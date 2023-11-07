@@ -119,7 +119,9 @@ const SinglePage = () => {
         <h3>Fun Facts</h3>
         <p>{plant.funFact}</p>
       </div>
-      <Calendar />
+      <div className="calendar-container">
+        <Calendar />
+      </div>
     </div>
   );
 };

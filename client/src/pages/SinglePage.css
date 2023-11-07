@@ -128,3 +128,8 @@
 .plant-informations p {
   padding: 5px 0 30px 0;
 }
+
+.calendar-container {
+  width: 100%; /* Set the calendar container width to 100% */
+  background-color: #fff; /* Set the background color for the calendar container */
+}

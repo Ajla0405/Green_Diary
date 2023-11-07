@@ -37,13 +37,10 @@
 .fc-event {
   background-color: #61a03acc;
   color: #fff;
-  min-height: 60px;
+  padding: 5px;
+  margin: 5px;
 }
-.fc-event-title {
-  /* Allow the event title to wrap to the next row if it's too long */
-  white-space: normal;
-  word-wrap: break-word;
-}
+
 .add-event-button {
   background-color: #076434;
   color: #fff;
@@ -77,10 +74,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  text-align: center;
 }
 
 .event-title-input {
-  width: 100%;
+  width: 65%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -111,8 +110,6 @@
   background-color: #05a32d;
 }
 
-/* EditEventModal.jsx */
-
 .edit-event-modal {
   background-color: #fff;
   margin-top: 30px;
@@ -134,9 +131,6 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   text-align: center;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  white-space: normal;
 }
 
 .edit-day-label {
