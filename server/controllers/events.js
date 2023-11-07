@@ -46,7 +46,6 @@ export const getEventById = asyncHandler(async (req, res, next) => {
 
 export const getAllEvents = asyncHandler(async (req, res, next) => {
   if (!req.uid) {
-    // User is not logged in, return an empty array or a custom response
     return res.status(200).json([]);
   }
 
@@ -54,7 +53,6 @@ export const getAllEvents = asyncHandler(async (req, res, next) => {
     const events = await Events.find({ user: req.uid });
 
     if (!events.length) {
-      // Optionally, you can return a custom response here if no events are found
       return res.status(404).json({ message: "No events found for this user" });
     }
 
