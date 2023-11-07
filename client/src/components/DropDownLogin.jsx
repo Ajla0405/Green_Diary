@@ -1,23 +1,10 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useAuth } from "../Context/AuthProvider";
-import Dropdown from "react-bootstrap/Dropdown";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import Dropdown from "react-bootstrap/Dropdown";
 
 function DropdownLogin() {
-  const [user, setUser] = useState(null);
-  const { isLoggedIn, setIsLoggedIn } = useAuth();
-
-  useEffect(() => {
-    axios
-      .get("http://localhost:8000/auth/me", { withCredentials: true })
-      .then((response) => {
-        setUser(response.data);
-      })
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-      });
-  }, []);
+  const { isLoggedIn, setIsLoggedIn, userData, checkUser } = useAuth();
 
   const handleLogout = async () => {
     try {
@@ -27,16 +14,17 @@ function DropdownLogin() {
         { withCredentials: true }
       );
       setIsLoggedIn(false);
+      checkUser();
     } catch (error) {
       alert("Error logging out");
     }
   };
   return (
     <Dropdown>
-      {user ? (
+      {isLoggedIn ? (
         <>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            Hi {user.firstName} !
+            Hi {userData.firstName} !
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item id="dropdown-small-1">
