@@ -31,7 +31,7 @@ function DropdownLogin() {
               <Link to="/myplants"> My Plants</Link>
             </Dropdown.Item>
             <Dropdown.Item id="dropdown-small-2">
-              <Link to="/myplants"> My Calendar</Link>
+              <Link to="/mycalendar"> My Calendar</Link>
             </Dropdown.Item>
             <Dropdown.Item id="dropdown-small-3">
               <Link to="/mydiary"> My Diary</Link>

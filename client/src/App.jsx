@@ -16,6 +16,7 @@ import { useAuth } from "./Context/AuthProvider";
 import SinglePageLogin from "./pages/SinglePageLogin";
 import Modal from "react-modal";
 import MyDiary from "./pages/MyDiary";
+import Calendar from "./components/Calendar";
 
 Modal.setAppElement("#root");
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/myplants" element={<MyPlantPage />} />
         <Route path="/singlePageLogin/:id" element={<SinglePageLogin />} />
         <Route path="/mydiary" element={<MyDiary />} />
+        <Route path="/mycalendar" element={<Calendar />} />
       </Routes>
       <Footer />
     </div>
