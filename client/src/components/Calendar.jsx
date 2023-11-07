@@ -1,94 +1,11 @@
-// import React, { useState, useEffect, useRef } from "react";
-// import Fullcalendar from "@fullcalendar/react";
-// import dayGridPlugin from "@fullcalendar/daygrid";
-// import AddEventModal from "./AddEventModal";
-// import axios from "axios";
-// import { useAuth } from "../Context/AuthProvider";
-
-// const apiBaseUrl = "http://localhost:8000";
-
-// const api = axios.create({
-//   baseURL: apiBaseUrl,
-//   withCredentials: true,
-// });
-
-// api.interceptors.request.use((config) => {
-//   const token = localStorage.getItem("token");
-//   if (token) {
-//     config.headers.Authorization = `Bearer ${token}`;
-//   }
-//   return config;
-// });
-
-// const Calendar = () => {
-//   const [modalOpen, setModalOpen] = useState(false);
-//   const calendarRef = useRef(null);
-//   const [events, setEvents] = useState([]);
-
-//   const { userData } = useAuth();
-//   const userId = userData._id;
-
-//   const onEventAdded = (event) => {
-//     const { eventType, eventDate } = event;
-//     api
-//       .post("http://localhost:8000/events/create-event", {
-//         eventType,
-//         eventDate,
-//         user: userId,
-//       })
-//       .then((response) => {
-//         setEvents([...events, response.data]);
-//       })
-//       .catch((error) => {
-//         console.error("Error adding event:", error);
-//       });
-//   };
-
-//   useEffect(() => {
-//     api
-//       .get("http://localhost:8000/events/get-event")
-//       .then((response) => {
-//         const userEvents = response.data.filter(
-//           (event) => event.user === userId
-//         );
-//         setEvents(userEvents);
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching events:", error);
-//       });
-//   }, [userId]);
-
-//   return (
-//     <section>
-//       <button onClick={() => setModalOpen(true)}>Add Event Type</button>
-//       <div style={{ position: "relative", zIndex: 0 }}>
-//         <Fullcalendar
-//           ref={calendarRef}
-//           plugins={[dayGridPlugin]}
-//           initialView="dayGridMonth"
-//           events={events.map((event) => ({
-//             title: event.eventType,
-//             start: event.eventDate,
-//           }))}
-//         />
-//       </div>
-//       <AddEventModal
-//         isOpen={modalOpen}
-//         onClose={() => setModalOpen(false)}
-//         onEventAdded={(event) => onEventAdded(event)}
-//       />
-//     </section>
-//   );
-// };
-
-// export default Calendar;
 import React, { useState, useEffect, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import AddEventModal from "./AddEventModal";
-import EditEventModal from "./EditEventModal"; // Make sure to import EditEventModal
+import EditEventModal from "./EditEventModal";
 import axios from "axios";
 import { useAuth } from "../Context/AuthProvider";
+import { Link } from "react-router-dom";
 
 const apiBaseUrl = "http://localhost:8000";
 
@@ -107,12 +24,12 @@ api.interceptors.request.use((config) => {
 
 const Calendar = () => {
   const [modalOpen, setModalOpen] = useState(false);
-  const [editModalOpen, setEditModalOpen] = useState(false); // State to control edit modal
+  const [editModalOpen, setEditModalOpen] = useState(false);
   const calendarRef = useRef(null);
   const [events, setEvents] = useState([]);
-  const [selectedEvent, setSelectedEvent] = useState(null); // Selected event for editing
+  const [selectedEvent, setSelectedEvent] = useState(null);
 
-  const { userData } = useAuth();
+  const { userData, isLoggedIn } = useAuth();
   const userId = userData._id;
 
   const onEventAdded = (event) => {
@@ -156,6 +73,7 @@ const Calendar = () => {
       });
     setEditModalOpen(false);
   };
+
   const handleEventDeleted = (eventId) => {
     api
       .delete(`http://localhost:8000/events/delete-event/${eventId}`)
@@ -169,10 +87,24 @@ const Calendar = () => {
     setEditModalOpen(false);
   };
 
+  const handleLogout = async () => {
+    try {
+      await axios.post(
+        "http://localhost:8000/auth/logout",
+        {},
+        { withCredentials: true }
+      );
+      logout();
+    } catch (error) {
+      alert("Error logging out");
+    }
+  };
+
   useEffect(() => {
     api
       .get("http://localhost:8000/events/get-event")
       .then((response) => {
+        console.log("Response from server:", response.data);
         const userEvents = response.data.filter(
           (event) => event.user === userId
         );
@@ -185,7 +117,13 @@ const Calendar = () => {
 
   return (
     <section>
-      <button onClick={() => setModalOpen(true)}>Add Event Type</button>
+      {isLoggedIn ? (
+        <button onClick={() => setModalOpen(true)}>Add Event Type</button>
+      ) : (
+        <Link to="/login">
+          <button>Please log in to add event</button>
+        </Link>
+      )}
       <div style={{ position: "relative", zIndex: 0 }}>
         <FullCalendar
           ref={calendarRef}

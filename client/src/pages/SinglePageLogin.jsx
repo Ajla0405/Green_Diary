@@ -70,7 +70,6 @@ const SinglePageLogin = () => {
         <h3>Fun Facts</h3>
         <p>{plant.funFact}</p>
       </div>
-      <Calendar />
     </div>
   );
 };
