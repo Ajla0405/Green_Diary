@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import "./SinglePage.css";
 import { useAuth } from "../Context/AuthProvider";
+import Calendar from "../components/Calendar";
 
 const SinglePage = () => {
   const { id } = useParams();
@@ -118,6 +119,7 @@ const SinglePage = () => {
         <h3>Fun Facts</h3>
         <p>{plant.funFact}</p>
       </div>
+      <Calendar />
     </div>
   );
 };
