@@ -5,18 +5,24 @@ import { Router } from "express";
 
 const eventsRouter = express.Router();
 
-eventsRouter.route("/").post(verifyToken, eventsController.createEvent);
-
-eventsRouter.route("/").get(verifyToken, eventsController.getAllEvents);
-
-eventsRouter.route("/:id").get(verifyToken, eventsController.getEventById);
+eventsRouter
+  .route("/create-event")
+  .post(verifyToken, eventsController.createEvent);
 
 eventsRouter
-  .route("/:id/update")
+  .route("/get-event")
+  .get(verifyToken, eventsController.getAllEvents);
+
+eventsRouter
+  .route("/get-event/:id")
+  .get(verifyToken, eventsController.getEventById);
+
+eventsRouter
+  .route("/update-event/:id")
   .put(verifyToken, eventsController.updateEvent);
 
 eventsRouter
-  .route("/:id/delete")
+  .route("/delete-event/:id")
   .delete(verifyToken, eventsController.deleteEvent);
 
 export default eventsRouter;

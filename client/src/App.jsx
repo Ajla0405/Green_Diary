@@ -13,8 +13,11 @@ import AboutUs from "./components/AboutUs";
 import PlantIdentifier from "./pages/PlantIdentifier";
 import MyPlantPage from "./pages/MyPlantPage";
 import { useAuth } from "./Context/AuthProvider";
+import SinglePageLogin from "./pages/SinglePageLogin";
+import Modal from "react-modal";
 import MyDiary from "./pages/MyDiary";
 
+Modal.setAppElement("#root");
 const App = () => {
   return (
     <div>
@@ -29,6 +32,7 @@ const App = () => {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/myplants" element={<MyPlantPage />} />
+        <Route path="/singlePageLogin/:id" element={<SinglePageLogin />} />
         <Route path="/mydiary" element={<MyDiary />} />
       </Routes>
       <Footer />
