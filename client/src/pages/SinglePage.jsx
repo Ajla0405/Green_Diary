@@ -9,7 +9,7 @@ const SinglePage = () => {
   const [plant, setPlant] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { authToken } = useAuth();
+  const { userData, isLoggedIn } = useAuth();
   const [isSaved, setIsSaved] = useState(false);
 
   useEffect(() => {
@@ -25,17 +25,46 @@ const SinglePage = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    if (
+      isLoggedIn &&
+      userData.savedPlants &&
+      userData.savedPlants.includes(id)
+    ) {
+      setIsSaved(true);
+    }
+  }, [id, isLoggedIn, userData.savedPlants]);
+
   const handleSave = () => {
-    axios
-      .post(`http://localhost:8000/users/savedPlant/${id}`, plant, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        setIsSaved(true);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
+    if (isLoggedIn) {
+      axios
+        .post(`http://localhost:8000/users/savedPlant/${id}`, plant, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          setIsSaved(true);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    } else {
+      alert("Please log in to save the plant.");
+    }
+  };
+
+  const handleUnsave = () => {
+    if (isLoggedIn) {
+      axios
+        .delete(`http://localhost:8000/users/unsavePlant/${id}`, {
+          withCredentials: true,
+        })
+        .then((response) => {
+          setIsSaved(false);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
   };
 
   if (loading) {
@@ -52,10 +81,12 @@ const SinglePage = () => {
         <div className="left-side">
           <h1>{plant.name}</h1>
           <p>{plant.scientificName}</p>
-          {isSaved ? (
-            <button disabled>Saved</button>
-          ) : (
+          {isLoggedIn && !isSaved ? (
             <button onClick={handleSave}>Save</button>
+          ) : isLoggedIn && isSaved ? (
+            <button onClick={handleUnsave}>Unsave</button>
+          ) : (
+            <button onClick={handleSave}>Log in to Save</button>
           )}
         </div>
         <div className="right-side">

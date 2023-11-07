@@ -5,13 +5,13 @@ import "./MyPlantPage.css";
 import { Link } from "react-router-dom";
 
 const MyPlantPage = () => {
-  const { userData } = useAuth();
+  const { userData, isLoggedIn } = useAuth();
   const [savedPlants, setSavedPlants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (userData.savedPlants && userData.savedPlants.length > 0) {
+    if (isLoggedIn && userData.savedPlants && userData.savedPlants.length > 0) {
       const savedPlantIds = userData.savedPlants;
 
       const fetchSavedPlants = async () => {
@@ -37,7 +37,7 @@ const MyPlantPage = () => {
       setSavedPlants([]);
       setLoading(false);
     }
-  }, [userData.savedPlants]);
+  }, [isLoggedIn, userData.savedPlants]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -48,13 +48,13 @@ const MyPlantPage = () => {
   }
 
   return (
-    <div className="my-plants-page">
-      <h1>Your Saved Plants</h1>
-      <ul>
+    <div id="my-plants-page">
+      <h1>My Plants</h1>
+      <ul id="my-plants-item" className="grid-container">
         {savedPlants.map((savedPlant) => (
-          <li key={savedPlant._id}>
-            <Link to={`/singlePageLogin/${savedPlant._id}`}>
-              <h3>{savedPlant.name}</h3>
+          <li className="grid-item" key={savedPlant._id}>
+            <h6>{savedPlant.name}</h6>
+            <Link to={`/plant/${savedPlant._id}`}>
               <img src={savedPlant.url} alt={savedPlant.name} />
             </Link>
           </li>

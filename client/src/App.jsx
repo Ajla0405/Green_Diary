@@ -18,8 +18,6 @@ import Modal from "react-modal";
 
 Modal.setAppElement("#root");
 const App = () => {
-  const { userData } = useAuth();
-  console.log(userData.savedPlants);
   return (
     <div>
       <Navbar />

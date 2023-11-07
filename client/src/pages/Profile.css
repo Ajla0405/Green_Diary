@@ -1,0 +1,21 @@
+@media only screen and (min-width: 600px) {
+  .my-profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    height: auto;
+    margin: 7rem 30%;
+  }
+  .my-profile-para {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    height: 40px;
+    background-color: aliceblue;
+    border: 1px solid black;
+    padding: 1rem 1rem;
+  }
+}
