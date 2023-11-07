@@ -1,41 +1,8 @@
-.grid-container {
-  display: grid;
-  gap: 70px 100px;
-  grid-template-columns: auto auto auto;
-}
-
-.grid-item {
-  background-color: #faf9f8;
-  font-size: 30px;
-  text-align: center;
-  width: 100%;
-  max-width: 300px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-}
-.grid-item img {
-  width: 100%;
-  max-width: none;
-  height: auto;
-  padding-bottom: 1rem;
-}
-.grid-item p {
-  font-family: "roboto", sans-serif;
-  font-size: 1rem;
-  text-align: center;
-  font-weight: bold;
-  color: #076434;
-  position: relative;
-}
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .grid-container {
     display: grid;
     gap: 70px 100px;
-    grid-template-columns: auto;
+    grid-template-columns: auto auto auto;
   }
 
   .grid-item {
@@ -67,21 +34,9 @@
   }
   #plants-container {
     /* background-image: url("../images/plants-background2.png");
-    background-repeat: repeat;
-    background-size: cover; */
+  background-repeat: repeat;
+  background-size: cover; */
     width: 100vw;
-    max-height: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #076434;
-  }
-  #plants-container {
-    /* background-image: url("../images/plants-background2.png");
-    background-repeat: repeat;
-    background-size: cover; */
-    max-width: 768px;
     max-height: auto;
     display: flex;
     flex-direction: column;
@@ -93,7 +48,7 @@
     margin: 5rem 5rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
   }
   #plants-search i {
@@ -102,8 +57,8 @@
   }
   #plants-search button {
     margin-left: 5rem;
-    width: auto;
-    height: auto;
+    width: 250px;
+    height: 40px;
     border: solid 1px #779b87;
     background-color: #faf9f8;
     border-radius: 30px;
@@ -119,114 +74,155 @@
   #plants-search a:active {
     color: #5f7a6f;
   }
-}
-#plants-container {
-  /* background-image: url("../images/plants-background2.png");
-  background-repeat: repeat;
-  background-size: cover; */
-  width: 100vw;
-  max-height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #076434;
-}
-#plants-search {
-  margin: 5rem 5rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-}
-#plants-search i {
-  color: #faf9f8;
-  padding-left: 1rem;
-}
-#plants-search button {
-  margin-left: 5rem;
-  width: 250px;
-  height: 40px;
-  border: solid 1px #779b87;
-  background-color: #faf9f8;
-  border-radius: 30px;
-  color: #5f7a6f;
-  font-family: "Raleway", sans-serif;
-  font-weight: 900;
-  text-align: left;
-  padding-left: 1.5rem;
-}
-#plants-search a:link,
-#plants-search a:hover,
-#plants-search a:visited,
-#plants-search a:active {
-  color: #5f7a6f;
-}
-/*SEARCH FUNCTION: SEARCH BY NAME*/
+  /*SEARCH FUNCTION: SEARCH BY NAME*/
 
-.search-function-component input {
-  width: 250px;
-  height: 40px;
-  border: solid 1px #076434;
-  background-color: #faf9f8;
-  border-radius: 30px;
-  color: #076434;
-  font-family: "Raleway", sans-serif;
-  font-weight: 900;
-}
+  .search-function-component input {
+    width: 250px;
+    height: 40px;
+    border: solid 1px #076434;
+    background-color: #faf9f8;
+    border-radius: 30px;
+    color: #076434;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+  }
 
-/*PAGINATION */
+  /*PAGINATION */
 
-.pagination li {
-  width: 100px;
-  height: 40px;
-  border: solid 1px #076434;
-  background-color: #faf9f8;
-  border-radius: 40px;
-  color: #076434;
-  font-family: "Raleway", sans-serif;
-  font-weight: 900;
-  text-align: center;
-  padding-top: 0.5rem;
-  margin: 5rem 10rem;
-}
+  .pagination li {
+    width: 100px;
+    height: 40px;
+    border: solid 1px #076434;
+    background-color: #faf9f8;
+    border-radius: 40px;
+    color: #076434;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    text-align: center;
+    padding-top: 0.5rem;
+    margin: 5rem 10rem;
+  }
 
-/*SEARCH BY NAME */
-#input-query {
-  padding-left: 1rem;
+  /*SEARCH BY NAME */
+  #input-query {
+    padding-left: 1rem;
+  }
 }
 
 @media (max-width: 768px) {
   .grid-container {
-    grid-template-columns: auto auto;
-    gap: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .grid-item {
+    background-color: #faf9f8;
+    font-size: 30px;
+    text-align: center;
     width: 100%;
-    max-width: 300px;
     height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    margin-top: 3rem;
   }
-
   .grid-item img {
     width: 100%;
     max-width: none;
+    height: auto;
+    margin-bottom: 2rem;
   }
-
+  .grid-item p {
+    font-family: "roboto", sans-serif;
+    font-size: 1rem;
+    text-align: center;
+    font-weight: bold;
+    color: #076434;
+    position: relative;
+  }
+  #plants-container {
+    width: 100vw;
+    max-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #076434;
+  }
   #plants-search {
-    margin: 2rem 2rem;
+    margin-top: 5rem;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #plants-search-first,
+  #plants-search-second {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    margin-top: 1rem;
+  }
+  #plants-search i {
+    color: #faf9f8;
+    padding-left: 1rem;
+  }
+  #plants-search button {
+    width: 250px;
+    height: 40px;
+    border: solid 1px #779b87;
+    background-color: #faf9f8;
+    border-radius: 30px;
+    color: #5f7a6f;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    text-align: left;
+  }
+  #plants-search a:link,
+  #plants-search a:hover,
+  #plants-search a:visited,
+  #plants-search a:active {
+    color: #5f7a6f;
+  }
+  /*SEARCH FUNCTION: SEARCH BY NAME*/
+
+  .search-function-component input {
+    width: 250px;
+    height: 40px;
+    border: solid 1px #076434;
+    background-color: #faf9f8;
+    border-radius: 30px;
+    color: #076434;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
   }
 
-  #plants-search button {
-    width: 100%;
-    margin: 0;
-  }
+  /*PAGINATION */
 
   .pagination li {
-    margin: 1rem 0;
+    width: 100px;
+    height: 40px;
+    border: solid 1px #076434;
+    background-color: #faf9f8;
+    border-radius: 40px;
+    color: #076434;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+    text-align: center;
+    padding-top: 0.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-top: 2rem;
   }
 
+  /*SEARCH BY NAME */
   #input-query {
-    width: 100%;
+    padding-left: 1rem;
   }
 }

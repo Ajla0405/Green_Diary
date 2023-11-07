@@ -9,7 +9,7 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const { setIsLoggedIn } = useAuth();
+  const { setIsLoggedIn, checkUser } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -29,8 +29,8 @@ function LoginForm() {
 
       if (response.status === 200) {
         navigate("/");
-
         setIsLoggedIn(true);
+        checkUser();
       }
     } catch (error) {
       setError(error.response.data.error);

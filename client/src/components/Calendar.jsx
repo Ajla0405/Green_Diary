@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import AddEventModal from "./AddEventModal";
@@ -6,6 +6,7 @@ import EditEventModal from "./EditEventModal";
 import axios from "axios";
 import { useAuth } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
+// import "./calendar-styles.css";
 
 const apiBaseUrl = "http://localhost:8000";
 
@@ -87,45 +88,41 @@ const Calendar = () => {
     setEditModalOpen(false);
   };
 
-  const handleLogout = async () => {
-    try {
-      await axios.post(
-        "http://localhost:8000/auth/logout",
-        {},
-        { withCredentials: true }
-      );
-      logout();
-    } catch (error) {
-      alert("Error logging out");
-    }
-  };
-
   useEffect(() => {
-    api
-      .get("http://localhost:8000/events/get-event")
-      .then((response) => {
-        console.log("Response from server:", response.data);
-        const userEvents = response.data.filter(
-          (event) => event.user === userId
-        );
-        setEvents(userEvents);
-      })
-      .catch((error) => {
-        console.error("Error fetching events:", error);
-      });
-  }, [userId]);
+    if (!isLoggedIn) {
+      setEvents([]);
+    } else {
+      api
+        .get("http://localhost:8000/events/get-event")
+        .then((response) => {
+          console.log("Response from server:", response.data);
+          const userEvents = response.data.filter(
+            (event) => event.user === userId
+          );
+          setEvents(userEvents);
+        })
+        .catch((error) => {
+          console.error("Error fetching events:", error);
+        });
+    }
+  }, [isLoggedIn, userId]);
 
   return (
     <section>
       {isLoggedIn ? (
-        <button onClick={() => setModalOpen(true)}>Add Event Type</button>
+        <button className="add-event-button" onClick={() => setModalOpen(true)}>
+          Add Event Type
+        </button>
       ) : (
         <Link to="/login">
-          <button>Please log in to add event</button>
+          <button className="login-button-calendar">
+            Please login to Add Event
+          </button>
         </Link>
       )}
       <div style={{ position: "relative", zIndex: 0 }}>
         <FullCalendar
+          className="my-calendar-class"
           ref={calendarRef}
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
@@ -134,7 +131,15 @@ const Calendar = () => {
             start: event.eventDate,
             extendedProps: { _id: event._id },
           }))}
+          eventColor="#61a03acc"
+          eventTextColor="#fff"
+          headerToolbar={{
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+          }}
           eventClick={handleEventClick}
+          height="650px"
         />
       </div>
       <AddEventModal

@@ -9,49 +9,42 @@ export const useAuth = () => {
 
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setuserData] = useState({});
+  const [userData, setUserData] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  const checkUser = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get("http://localhost:8000/auth/me", {
+        withCredentials: true,
+      });
+
+      if (response.data && response.data._id) {
+        setIsLoggedIn(true);
+        setUserData(response.data);
+      } else {
+        setIsLoggedIn(false);
+        setUserData({});
+      }
+    } catch (error) {
+      setIsLoggedIn(false);
+      setUserData({});
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const checkUser = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/auth/me", {
-          withCredentials: true,
-        });
-
-        if (response.data && response.data._id) {
-          setIsLoggedIn(true);
-          setuserData(response.data);
-        } else {
-          setIsLoggedIn(false);
-          setuserData({});
-        }
-      } catch (error) {
-        setIsLoggedIn(false);
-        setuserData({});
-      }
-    };
     checkUser();
   }, []);
 
-  const logout = async () => {
-    try {
-      await axios.post(
-        "http://localhost:8000/auth/logout",
-        {},
-        { withCredentials: true }
-      );
-      setIsLoggedIn(false);
-      setUserData({});
-    } catch (error) {
-      alert("Error logging out");
-    }
-  };
   const value = {
     isLoggedIn,
     setIsLoggedIn,
     userData,
-    setuserData,
-    logout,
+    setUserData,
+    loading,
+    checkUser,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

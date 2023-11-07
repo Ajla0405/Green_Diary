@@ -154,7 +154,7 @@ const MyDiary = () => {
                         })
                       }
                     />
-                    <input
+                    <textarea
                       type="text"
                       value={post.content}
                       onChange={(e) =>
