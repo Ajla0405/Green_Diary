@@ -16,6 +16,8 @@
     height: 40px;
     background-color: aliceblue;
     border: 1px solid black;
-    padding: 1rem 1rem;
   }
+}
+.my-profile-text {
+  padding-top: 2rem;
 }
