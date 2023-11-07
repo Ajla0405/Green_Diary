@@ -49,7 +49,7 @@ const MyPlantPage = () => {
 
   return (
     <div id="my-plants-page">
-      <h1>My Plants</h1>
+      <h2>My Plants</h2>
       <ul id="my-plants-item" className="grid-container">
         {savedPlants.map((savedPlant) => (
           <li className="grid-item" key={savedPlant._id}>

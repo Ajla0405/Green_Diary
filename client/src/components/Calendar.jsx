@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import AddEventModal from "./AddEventModal";
@@ -6,7 +6,7 @@ import EditEventModal from "./EditEventModal";
 import axios from "axios";
 import { useAuth } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
-import "./calendar-styles.css";
+import "./calendar-style.css";
 
 const apiBaseUrl = "http://localhost:8000";
 
@@ -88,33 +88,24 @@ const Calendar = () => {
     setEditModalOpen(false);
   };
 
-  const handleLogout = async () => {
-    try {
-      await axios.post(
-        "http://localhost:8000/auth/logout",
-        {},
-        { withCredentials: true }
-      );
-      logout();
-    } catch (error) {
-      alert("Error logging out");
-    }
-  };
-
   useEffect(() => {
-    api
-      .get("http://localhost:8000/events/get-event")
-      .then((response) => {
-        console.log("Response from server:", response.data);
-        const userEvents = response.data.filter(
-          (event) => event.user === userId
-        );
-        setEvents(userEvents);
-      })
-      .catch((error) => {
-        console.error("Error fetching events:", error);
-      });
-  }, [userId]);
+    if (!isLoggedIn) {
+      setEvents([]);
+    } else {
+      api
+        .get("http://localhost:8000/events/get-event")
+        .then((response) => {
+          console.log("Response from server:", response.data);
+          const userEvents = response.data.filter(
+            (event) => event.user === userId
+          );
+          setEvents(userEvents);
+        })
+        .catch((error) => {
+          console.error("Error fetching events:", error);
+        });
+    }
+  }, [isLoggedIn, userId]);
 
   return (
     <section>

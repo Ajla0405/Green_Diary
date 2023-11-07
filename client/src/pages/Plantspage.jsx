@@ -48,14 +48,18 @@ const PlantsPage = () => {
   return (
     <div id="plants-container">
       <div id="plants-search">
-        <SearchByName
-          searchQuery={searchQuery}
-          onSearchQueryChange={setSearchQuery}
-        />
-        <button>
-          <Link to="/plantIdentifier">Search by Image</Link>
-        </button>
-        <i className="fa-solid fa-image fa-xl"></i>
+        <div id="plants-search-first">
+          <SearchByName
+            searchQuery={searchQuery}
+            onSearchQueryChange={setSearchQuery}
+          />
+        </div>
+        <div id="plants-search-second">
+          <button>
+            <Link to="/plantIdentifier">Search by Image</Link>
+          </button>
+          <i className="fa-solid fa-image fa-xl"></i>
+        </div>
       </div>
       <div className="grid-container" id="plants-list">
         {currentItems.map((plant) => (

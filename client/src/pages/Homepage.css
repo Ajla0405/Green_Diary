@@ -494,6 +494,6 @@ a:hover {
 }
 
 .dropdown-toggle {
-  width: 150px;
+  width: auto;
   height: 40px;
 }

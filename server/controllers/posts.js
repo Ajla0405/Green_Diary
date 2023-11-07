@@ -1,40 +1,38 @@
 import Post from "../models/Post.js";
-
 import asyncHandler from "../utils/asyncHandler.js";
 import ErrorResponse from "../utils/ErrorResponse.js";
 
+// Create a new post
 export const createPost = asyncHandler(async (req, res, next) => {
-  const { plantId, title, content, image, date } = req.body;
+  const { plantId, title, content, date } = req.body;
   const uid = req.uid;
 
-  const post = await Post.create({
+  const newPost = await Post.create({
     plant: plantId,
     title,
     content,
-    image,
     date,
     user: uid,
   });
 
-  res.status(201).json(post);
+  // Populate the user information in the newly created post
+  const populatedPost = await Post.findById(newPost._id).populate("user");
+
+  res.status(201).json(populatedPost);
 });
 
-export const getAllPost = async (req, res, next) => {
-  try {
-    const posts = await Post.find();
+// Get all posts
+export const getAllPost = asyncHandler(async (req, res, next) => {
+  const posts = await Post.find().populate("user");
 
-    if (!posts.length) {
-      throw { statusCode: 404, message: "Posts not found" };
-    }
-    res.json(posts);
-  } catch (error) {
-    res.status(error.statusCode || 500).json({
-      error: error.message || "An error occurred while fetching the posts.",
-    });
-    next(error);
+  if (!posts.length) {
+    return next(new ErrorResponse("Posts not found", 404));
   }
-};
 
+  res.json(posts);
+});
+
+// Get a single post by ID
 export const getPostById = asyncHandler(async (req, res, next) => {
   const postId = req.params.id;
 
@@ -47,9 +45,10 @@ export const getPostById = asyncHandler(async (req, res, next) => {
   res.status(200).json(post);
 });
 
+// Update a post by ID
 export const updatePost = asyncHandler(async (req, res, next) => {
   const postId = req.params.id;
-  const { title, content, image, date } = req.body;
+  const { title, content, date } = req.body;
   const uid = req.uid;
 
   const post = await Post.findById(postId);
@@ -58,22 +57,38 @@ export const updatePost = asyncHandler(async (req, res, next) => {
     return next(new ErrorResponse(`Post not found with ID ${postId}`, 404));
   }
 
+  // Ensure the user owns the post before updating
+  if (post.user.toString() !== uid) {
+    return next(
+      new ErrorResponse("You are not authorized to update this post", 403)
+    );
+  }
+
   const updatedPost = await Post.findByIdAndUpdate(
     postId,
-    { title, content, image, date },
+    { title, content, date },
     { new: true, runValidators: true }
-  );
+  ).populate("user");
 
   res.status(200).json(updatedPost);
 });
 
+// Delete a post by ID
 export const deletePost = asyncHandler(async (req, res, next) => {
   const postId = req.params.id;
+  const uid = req.uid;
 
   const post = await Post.findById(postId);
 
   if (!post) {
-    return next(new ErrorResponse("Post not found with ID ${postId}, 404"));
+    return next(new ErrorResponse(`Post not found with ID ${postId}`, 404));
+  }
+
+  // Ensure the user owns the post before deleting
+  if (post.user.toString() !== uid) {
+    return next(
+      new ErrorResponse("You are not authorized to delete this post", 403)
+    );
   }
 
   const deletedPost = await Post.findByIdAndDelete(postId).populate("user");
