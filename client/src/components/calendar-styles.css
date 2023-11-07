@@ -37,6 +37,8 @@
 .fc-event {
   background-color: #61a03acc;
   color: #fff;
+  padding: 5px;
+  margin: 5px;
 }
 
 .add-event-button {
@@ -72,10 +74,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  text-align: center;
 }
 
 .event-title-input {
-  width: 100%;
+  width: 65%;
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
@@ -104,4 +108,66 @@
 
 .add-event-button:hover {
   background-color: #05a32d;
+}
+
+.edit-event-modal {
+  background-color: #fff;
+  margin-top: 30px;
+  width: 100%;
+  align-items: center;
+}
+
+.edit-event-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.event-title-input {
+  width: 60%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.edit-day-label {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.event-date-picker {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.edit-event-button {
+  background-color: #076434;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.edit-event-button:hover {
+  background-color: #05a32d;
+}
+
+.delete-event-button {
+  background-color: #ff5252;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.delete-event-button:hover {
+  background-color: #ff0000;
 }

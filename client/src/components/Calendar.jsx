@@ -148,7 +148,7 @@ const Calendar = () => {
             right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
           }}
           eventClick={handleEventClick}
-          height="650px"
+          height="680px"
         />
       </div>
       <AddEventModal
