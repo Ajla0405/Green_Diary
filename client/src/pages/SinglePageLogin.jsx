@@ -15,7 +15,7 @@ const SinglePageLogin = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/plants/${id}`)
+      .get(`https://greendiary-server.onrender.com/plants/${id}`)
       .then((response) => {
         setPlant(response.data);
         setLoading(false);

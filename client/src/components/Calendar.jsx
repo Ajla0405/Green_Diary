@@ -8,7 +8,7 @@ import { useAuth } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import "./calendar-style.css";
 
-const apiBaseUrl = "http://localhost:8000";
+const apiBaseUrl = "https://greendiary-server.onrender.com";
 
 const api = axios.create({
   baseURL: apiBaseUrl,
@@ -36,7 +36,7 @@ const Calendar = () => {
   const onEventAdded = (event) => {
     const { eventType, eventDate } = event;
     api
-      .post("http://localhost:8000/events/create-event", {
+      .post("https://greendiary-server.onrender.com/events/create-event", {
         eventType,
         eventDate,
         user: userId,
@@ -60,7 +60,7 @@ const Calendar = () => {
   const handleEventUpdated = (updatedEvent) => {
     api
       .put(
-        `http://localhost:8000/events/update-event/${updatedEvent._id}`,
+        `https://greendiary-server.onrender.com/events/update-event/${updatedEvent._id}`,
         updatedEvent
       )
       .then((response) => {
@@ -77,7 +77,9 @@ const Calendar = () => {
 
   const handleEventDeleted = (eventId) => {
     api
-      .delete(`http://localhost:8000/events/delete-event/${eventId}`)
+      .delete(
+        `https://greendiary-server.onrender.com/events/delete-event/${eventId}`
+      )
       .then(() => {
         const updatedEvents = events.filter((event) => event._id !== eventId);
         setEvents(updatedEvents);
@@ -93,7 +95,7 @@ const Calendar = () => {
       setEvents([]);
     } else {
       api
-        .get("http://localhost:8000/events/get-event")
+        .get("https://greendiary-server.onrender.com/events/get-event")
         .then((response) => {
           console.log("Response from server:", response.data);
           const userEvents = response.data.filter(

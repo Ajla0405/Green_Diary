@@ -23,9 +23,12 @@ const MyDiary = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await axios.get("http://localhost:8000/posts", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        "https://greendiary-server.onrender.com/posts",
+        {
+          withCredentials: true,
+        }
+      );
 
       if (response.status === 200) {
         const sortedPosts = response.data.sort(
@@ -47,7 +50,7 @@ const MyDiary = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/posts",
+        "https://greendiary-server.onrender.com/posts",
         postData,
         { withCredentials: true }
       );
@@ -66,21 +69,28 @@ const MyDiary = () => {
       alert(error.response.data.error);
     }
   };
+
   const handleEditPost = (postId) => {
+    const postToEdit = posts.find((post) => post._id === postId);
     setEditPostId(postId);
+    setPostData({
+      title: postToEdit.title,
+      content: postToEdit.content,
+    });
   };
 
-  const handleUpdatePost = async (postId, updatedData) => {
+  const handleUpdatePost = async (postId) => {
     try {
       const response = await axios.put(
-        `http://localhost:8000/posts/${postId}`,
-        updatedData,
+        `https://greendiary-server.onrender.com/posts/${postId}`,
+        postData,
         { withCredentials: true }
       );
 
       if (response.status === 200) {
         setEditPostId(null);
-        fetchPosts(userData._id);
+        setPostData({ title: "", content: "" });
+        await fetchPosts();
       }
     } catch (error) {
       alert(error.response.data.error);
@@ -90,33 +100,34 @@ const MyDiary = () => {
   const handleDeletePost = async (postId) => {
     try {
       const response = await axios.delete(
-        `http://localhost:8000/posts/${postId}`,
+        `https://greendiary-server.onrender.com/posts/${postId}`,
         {
           withCredentials: true,
         }
       );
 
       if (response.status === 200) {
-        fetchPosts(userData._id);
+        await fetchPosts();
       }
     } catch (error) {
       alert(error.response.data.error);
     }
   };
 
-  if (sending)
+  if (sending) {
     return (
       <div>
         <SpinnerDotted />
         <h6>Posting...</h6>
       </div>
     );
+  }
 
   return (
     <div id="diary-complete">
       {isLoggedIn && (
         <>
-          <h2>Welcome to my diary!</h2>
+          <h2>My Note</h2>
           <form id="diary-submit" onSubmit={handleSubmit}>
             <div id="diary-title">
               <label>Title:</label>
@@ -128,6 +139,7 @@ const MyDiary = () => {
                   setPostData({ ...postData, title: e.target.value })
                 }
                 placeholder="What's the name of your plant?"
+                disabled={editPostId !== null}
               />
             </div>
             <div id="diary-content">
@@ -140,53 +152,56 @@ const MyDiary = () => {
                   setPostData({ ...postData, content: e.target.value })
                 }
                 placeholder="Write down the memory with your plants?"
+                disabled={editPostId !== null}
               />
             </div>
-            <button type="submit">Post it!</button>
+            <button type="submit" disabled={editPostId !== null}>
+              Post it!
+            </button>
           </form>
           <div id="diary-show">
             {posts.map((post) => (
               <div id="diary-text-box" key={post._id}>
                 {editPostId === post._id ? (
-                  <>
+                  <div id="diary-text2">
                     <input
                       type="text"
-                      value={post.title}
+                      value={postData.title}
                       onChange={(e) =>
-                        handleUpdatePost(post._id, {
-                          title: e.target.value,
-                          content: post.content,
-                        })
+                        setPostData({ ...postData, title: e.target.value })
                       }
                     />
                     <textarea
                       type="text"
-                      value={post.content}
+                      value={postData.content}
                       onChange={(e) =>
-                        handleUpdatePost(post._id, {
-                          title: post.title,
-                          content: e.target.value,
-                        })
+                        setPostData({ ...postData, content: e.target.value })
                       }
                     />
-                    <div></div>
-                    <button onClick={() => handleUpdatePost(post._id, post)}>
-                      Update
-                    </button>
-                  </>
+                    <div id="update-diary">
+                      <button onClick={() => handleUpdatePost(post._id)}>
+                        Update
+                      </button>
+                      <button onClick={() => setEditPostId(null)}>
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
                 ) : (
                   <>
                     <h6>{post.title}</h6>
                     <p>{post.content}</p>
                     <p>{format(new Date(post.date), "MMM dd, yyyy @ HH:mm")}</p>
-                    <button onClick={() => handleEditPost(post._id)}>
-                      Edit
-                    </button>
+                    <div className="diary-button">
+                      <button onClick={() => handleEditPost(post._id)}>
+                        Edit
+                      </button>
+                      <button onClick={() => handleDeletePost(post._id)}>
+                        Delete
+                      </button>
+                    </div>
                   </>
                 )}
-                <button onClick={() => handleDeletePost(post._id)}>
-                  Delete
-                </button>
               </div>
             ))}
           </div>
