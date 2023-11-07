@@ -6,6 +6,7 @@ import EditEventModal from "./EditEventModal";
 import axios from "axios";
 import { useAuth } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
+import "./calendar-styles.css";
 
 const apiBaseUrl = "http://localhost:8000";
 
@@ -118,14 +119,19 @@ const Calendar = () => {
   return (
     <section>
       {isLoggedIn ? (
-        <button onClick={() => setModalOpen(true)}>Add Event Type</button>
+        <button className="add-event-button" onClick={() => setModalOpen(true)}>
+          Add Event Type
+        </button>
       ) : (
         <Link to="/login">
-          <button>Please log in to add event</button>
+          <button className="login-button-calendar">
+            Please login to Add Event
+          </button>
         </Link>
       )}
       <div style={{ position: "relative", zIndex: 0 }}>
         <FullCalendar
+          className="my-calendar-class"
           ref={calendarRef}
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
@@ -134,7 +140,15 @@ const Calendar = () => {
             start: event.eventDate,
             extendedProps: { _id: event._id },
           }))}
+          eventColor="#61a03acc"
+          eventTextColor="#fff"
+          headerToolbar={{
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
+          }}
           eventClick={handleEventClick}
+          height="650px"
         />
       </div>
       <AddEventModal
