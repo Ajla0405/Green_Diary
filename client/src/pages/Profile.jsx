@@ -22,7 +22,7 @@ const Profile = () => {
     <div className="my-profile">
       <h4>My profile</h4>
       {user ? (
-        <div>
+        <div className="my-profile-text">
           <div className="my-profile-para">
             <p>First Name: </p>
             <p>{user.firstName}</p>

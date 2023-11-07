@@ -19,10 +19,10 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: [true, "Content is required"],
   },
-  image: {
-    type: String,
-    required: [true, "Image url is required"],
-  },
+  // image: {
+  //   type: String,
+  //   required: [true, "Image url is required"],
+  // },
   date: {
     type: Date,
     default: Date.now,

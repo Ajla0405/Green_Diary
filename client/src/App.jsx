@@ -13,6 +13,7 @@ import AboutUs from "./components/AboutUs";
 import PlantIdentifier from "./pages/PlantIdentifier";
 import MyPlantPage from "./pages/MyPlantPage";
 import { useAuth } from "./Context/AuthProvider";
+import MyDiary from "./pages/MyDiary";
 
 const App = () => {
   return (
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/myplants" element={<MyPlantPage />} />
+        <Route path="/mydiary" element={<MyDiary />} />
       </Routes>
       <Footer />
     </div>
