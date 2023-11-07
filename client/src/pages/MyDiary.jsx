@@ -13,23 +13,28 @@ const MyDiary = () => {
   });
   const [posts, setPosts] = useState([]);
   const [editPostId, setEditPostId] = useState(null);
-
-  const { isLoggedIn, user } = useAuth();
+  const { isLoggedIn, userData } = useAuth();
 
   useEffect(() => {
-    if (isLoggedIn) {
-      fetchPosts(user?._id);
+    if (isLoggedIn && userData?._id) {
+      fetchPosts();
     }
-  }, [isLoggedIn, user]);
+  }, [isLoggedIn, userData?._id]);
 
-  const fetchPosts = async (userId) => {
+  const fetchPosts = async () => {
     try {
-      const response = await axios.get(`http://localhost:8000/posts`, {
+      const response = await axios.get("http://localhost:8000/posts", {
         withCredentials: true,
       });
 
       if (response.status === 200) {
-        setPosts(response.data);
+        const sortedPosts = response.data.sort(
+          (a, b) => new Date(b.date) - new Date(a.date)
+        );
+        const userPosts = sortedPosts.filter(
+          (post) => post.user._id === userData._id
+        );
+        setPosts(userPosts);
       }
     } catch (error) {
       console.error("Error fetching posts:", error);
@@ -52,15 +57,15 @@ const MyDiary = () => {
           title: "",
           content: "",
         });
+
+        await fetchPosts();
         setSending(false);
-        fetchPosts(user._id);
       }
     } catch (error) {
       setSending(false);
       alert(error.response.data.error);
     }
   };
-
   const handleEditPost = (postId) => {
     setEditPostId(postId);
   };
@@ -75,7 +80,7 @@ const MyDiary = () => {
 
       if (response.status === 200) {
         setEditPostId(null);
-        fetchPosts(user._id);
+        fetchPosts(userData._id);
       }
     } catch (error) {
       alert(error.response.data.error);
@@ -92,7 +97,7 @@ const MyDiary = () => {
       );
 
       if (response.status === 200) {
-        fetchPosts(user._id);
+        fetchPosts(userData._id);
       }
     } catch (error) {
       alert(error.response.data.error);
@@ -164,6 +169,7 @@ const MyDiary = () => {
                         })
                       }
                     />
+                    <div></div>
                     <button onClick={() => handleUpdatePost(post._id, post)}>
                       Update
                     </button>
