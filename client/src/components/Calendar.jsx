@@ -6,7 +6,7 @@ import EditEventModal from "./EditEventModal";
 import axios from "axios";
 import { useAuth } from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
-// import "./calendar-styles.css";
+import "./calendar-style.css";
 
 const apiBaseUrl = "http://localhost:8000";
 
