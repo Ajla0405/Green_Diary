@@ -67,6 +67,20 @@
   max-width: 100%;
 }
 
+@media (min-width: 768px) and (max-width: 1045px) {
+  .single-page {
+    padding: 3rem 2rem;
+    margin: 10px;
+  }
+
+  .header-part h1 {
+    font-size: 36px;
+  }
+
+  .header-part p {
+    font-size: 24px;
+  }
+}
 @media (max-width: 768px) {
   .single-page {
     padding: 3rem 2rem;
@@ -130,6 +144,6 @@
 }
 
 .calendar-container {
-  width: 100%; /* Set the calendar container width to 100% */
-  background-color: #fff; /* Set the background color for the calendar container */
+  width: 100%;
+  background-color: #fff;
 }
