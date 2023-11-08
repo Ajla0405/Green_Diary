@@ -124,7 +124,6 @@ const Calendar = () => {
       )}
       <div style={{ position: "relative", zIndex: 0 }}>
         <FullCalendar
-          className="my-calendar-class"
           ref={calendarRef}
           plugins={[dayGridPlugin]}
           initialView="dayGridMonth"
