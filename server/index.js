@@ -15,7 +15,7 @@ const port = 8000;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173/", "https://greendiary.netlify.app/"],
+    origin: ["http://localhost:5173", "https://greendiary.netlify.app"],
     credentials: true,
   })
 );
