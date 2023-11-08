@@ -5,9 +5,6 @@
   border: 1px solid #ccc;
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
 }
-.my-calendar-class {
-  height: 600px;
-}
 
 .fc-day,
 .fc-day-number {
