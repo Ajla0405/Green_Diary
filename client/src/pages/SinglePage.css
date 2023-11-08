@@ -124,6 +124,10 @@
   align-items: center;
 }
 
+.plant-care > div > i {
+  padding-bottom: 1.5rem;
+}
+
 .plant-care p {
   flex: 1;
   padding: 5px;
