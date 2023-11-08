@@ -15,7 +15,7 @@ const SinglePage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8000/plants/${id}`)
+      .get(`https://greendiary-server.onrender.com/plants/${id}`)
       .then((response) => {
         setPlant(response.data);
         setLoading(false);
@@ -39,9 +39,13 @@ const SinglePage = () => {
   const handleSave = () => {
     if (isLoggedIn) {
       axios
-        .post(`http://localhost:8000/users/savedPlant/${id}`, plant, {
-          withCredentials: true,
-        })
+        .post(
+          `https://greendiary-server.onrender.com/users/savedPlant/${id}`,
+          plant,
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => {
           setIsSaved(true);
         })
@@ -56,9 +60,12 @@ const SinglePage = () => {
   const handleUnsave = () => {
     if (isLoggedIn) {
       axios
-        .delete(`http://localhost:8000/users/unsavePlant/${id}`, {
-          withCredentials: true,
-        })
+        .delete(
+          `https://greendiary-server.onrender.com/users/unsavePlant/${id}`,
+          {
+            withCredentials: true,
+          }
+        )
         .then((response) => {
           setIsSaved(false);
         })

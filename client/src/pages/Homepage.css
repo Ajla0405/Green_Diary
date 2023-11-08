@@ -9,9 +9,9 @@
   color: #076434;
 }
 #navbar-menu a:visited,
-a:link,
-a:hover,
-a:active {
+#navbar-menu a:link,
+#navbar-menu a:hover,
+#navbar-menu a:active {
   color: #076434;
 }
 #navbar-icon {

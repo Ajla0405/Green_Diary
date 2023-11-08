@@ -15,7 +15,7 @@ const PlantsPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/plants")
+      .get("https://greendiary-server.onrender.com/plants")
       .then((response) => {
         setPlants(response.data);
         setIsLoading(false);

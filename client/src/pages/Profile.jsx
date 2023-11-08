@@ -9,7 +9,9 @@ const Profile = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:8000/auth/me", { withCredentials: true })
+      .get("https://greendiary-server.onrender.com/auth/me", {
+        withCredentials: true,
+      })
       .then((response) => {
         setUser(response.data);
       })
