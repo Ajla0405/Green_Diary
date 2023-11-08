@@ -9,7 +9,7 @@ function DropdownLogin() {
   const handleLogout = async () => {
     try {
       await axios.post(
-        "https://greendiary-server.onrender.com/auth/logout",
+        "http://localhost:8000/auth/logout",
         {},
         { withCredentials: true }
       );
@@ -34,7 +34,7 @@ function DropdownLogin() {
               <Link to="/mycalendar"> My Calendar</Link>
             </Dropdown.Item>
             <Dropdown.Item id="dropdown-small-3">
-              <Link to="/mydiary"> My Note</Link>
+              <Link to="/mydiary"> My Diary</Link>
             </Dropdown.Item>
             <Dropdown.Item id="dropdown-small-4">
               <Link to="/profile"> My Profile</Link>

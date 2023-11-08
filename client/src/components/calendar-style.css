@@ -40,7 +40,6 @@
   min-height: 60px;
 }
 .fc-event-title {
-  /* Allow the event title to wrap to the next row if it's too long */
   white-space: normal;
   word-wrap: break-word;
 }
@@ -96,19 +95,6 @@
   width: 100%;
   border: 1px solid #ccc;
   border-radius: 5px;
-}
-
-.add-event-button {
-  background-color: #076434;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.add-event-button:hover {
-  background-color: #05a32d;
 }
 
 /* EditEventModal.jsx */
@@ -176,4 +162,32 @@
 
 .delete-event-button:hover {
   background-color: #ff0000;
+}
+
+@media (min-width: 768px) and (max-width: 1045px) {
+  .calendar-container {
+    width: 70%;
+    padding: 20px;
+  }
+  .my-calendar-class {
+    height: 700px;
+  }
+
+  .fc-toolbar {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 576px) {
+  .calendar-container {
+    width: 90%;
+    padding: 10px;
+  }
+  .my-calendar-class {
+    height: 500px;
+  }
+
+  .fc-toolbar {
+    font-size: 14px;
+  }
 }
