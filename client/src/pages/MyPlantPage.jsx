@@ -16,9 +16,12 @@ const MyPlantPage = () => {
 
       const fetchSavedPlants = async () => {
         try {
-          const response = await axios.get("http://localhost:8000/plants", {
-            withCredentials: true,
-          });
+          const response = await axios.get(
+            "https://greendiary-server.onrender.com/plants",
+            {
+              withCredentials: true,
+            }
+          );
 
           const filteredSavedPlants = response.data.filter((plant) =>
             savedPlantIds.includes(plant._id)

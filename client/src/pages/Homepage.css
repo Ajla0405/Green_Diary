@@ -367,13 +367,24 @@ a:active {
   a:active {
     color: #076434;
   }
+
+  #contact-form {
+    width: 70%;
+    height: 40%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 15%;
+    margin-top: 3rem;
+  }
 }
 
 /*Page1*/
 .background-page1 {
   width: 100vw;
   height: 900px;
-  background-image: url("../images/plant4.png");
+  background-image: url("../images/plant3.jpg");
   background-repeat: no-repeat;
   background-size: 100%;
   /* background-image: url("../images/succulents.png");
@@ -425,15 +436,6 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-  #navbar-menu {
-    padding-top: 1rem;
-  }
-
-  #navbar-icon img {
-    width: 60px;
-    height: 60px;
-  }
-
   .aboutUs-first {
     background-size: 20%;
     padding-bottom: 7rem;
@@ -473,6 +475,83 @@ a:hover {
   .content-page1 button {
     width: 100%;
   }
+  /* DROPDOWN WITH LOGIN*/
+  #dropdown-small-1,
+  #dropdown-small-2,
+  #dropdown-small-3,
+  #dropdown-small-4,
+  #dropdown-small-5 {
+    color: #076434;
+  }
+  .dropdown-item {
+    border-bottom: 1px solid rgb(137, 135, 135);
+    min-height: 40px;
+  }
+  .dropdown-item:hover {
+    background-color: #a1c196;
+  }
+  #dropdown-small-5 i {
+    padding-left: 1rem;
+  }
+
+  .dropdown-toggle {
+    width: 100px;
+    height: 40px;
+  }
+
+  /*NAVBAR MEDIA QUERY */
+
+  #navbar-menu ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 2rem;
+    font-family: "Poppins", sans-serif;
+    font-weight: bold;
+    color: #076434;
+    flex-wrap: wrap;
+  }
+  #navbar-menu li {
+    font-size: 1rem;
+    padding-left: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-top: 1rem;
+  }
+  #navbar-menu a:visited,
+  #navbar-menu a:link,
+  #navbar-menu a:hover,
+  #navbar-menu a:active {
+    color: #076434;
+  }
+
+  #navbar-icon img {
+    width: 60px;
+    height: 60px;
+  }
+  #navbar-container {
+    width: auto;
+  }
+  #user-logo {
+    color: #076434;
+    padding-top: 1rem;
+  }
+
+  /*Page1 with query */
+  .background-page1 {
+    width: 100vw;
+    height: 500px;
+    background-image: url("../images/plant3.jpg");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    /* background-image: url("../images/succulents.png");
+    background-size: 60%;
+    background-repeat: no-repeat;
+    background-position: 100% 100%;
+    width: 100vw;
+    min-height: 800px;
+    background-color: #d5ebe0; */
+  }
 }
 
 /* DROPDOWN WITH LOGIN*/
@@ -485,6 +564,7 @@ a:hover {
 }
 .dropdown-item {
   border-bottom: 1px solid rgb(137, 135, 135);
+  min-height: 40px;
 }
 .dropdown-item:hover {
   background-color: #a1c196;
@@ -495,5 +575,6 @@ a:hover {
 
 .dropdown-toggle {
   width: auto;
+  max-width: 200px;
   height: 40px;
 }
