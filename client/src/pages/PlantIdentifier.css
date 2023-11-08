@@ -62,3 +62,69 @@
 .identifier-guidance {
   padding-bottom: 3rem;
 }
+
+@media (max-width: 768px) {
+  .indentifier-guidance {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 5rem 0rem;
+  }
+
+  .indentifier-guidance h6 {
+    color: #076434;
+  }
+  .plant-identifier {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #ddf5d9;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    padding: 1rem;
+  }
+  #uploaded-images img {
+    width: 450px;
+    height: 450px;
+  }
+  #identifier-image-upload {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    height: auto;
+  }
+
+  #identifier-image-upload form {
+    padding-bottom: 2rem;
+  }
+  .plant-identifier button {
+    width: 150px;
+    height: 50px;
+    border: solid 1px #faf9f8;
+    background-color: #076434;
+    border-radius: 30px;
+    color: #faf9f8;
+    font-family: "Raleway", sans-serif;
+    font-weight: 900;
+  }
+  #upload-and-result {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #plant-suggestion {
+    margin-top: 7rem;
+    width: auto;
+    height: auto;
+    padding: 1rem;
+  }
+  .identifier-guidance h6 {
+    padding-top: 2rem;
+  }
+  .identifier-guidance {
+    padding-bottom: 3rem;
+  }
+}
