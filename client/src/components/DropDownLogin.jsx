@@ -28,7 +28,9 @@ function DropdownLogin() {
           </Dropdown.Toggle>
           <Dropdown.Menu>
             <Dropdown.Item id="dropdown-small-1">
-              <Link to="/myplants"> My Plants</Link>
+              <div>
+                <Link to="/myplants"> My Plants</Link>
+              </div>
             </Dropdown.Item>
             <Dropdown.Item id="dropdown-small-2">
               <Link to="/mycalendar"> My Calendar</Link>
