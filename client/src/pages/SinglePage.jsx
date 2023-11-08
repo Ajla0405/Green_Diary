@@ -103,19 +103,19 @@ const SinglePage = () => {
       </div>
       <div className="plant-care">
         <div>
-          <img src="/icons/watering-plant.png" alt="Watering Icon" />
+          <i class="fa-solid fa-droplet fa-xl"></i>
           <p>Watering: {plant.plantCare.watering}</p>
         </div>
         <div>
-          <img src="/icons/brightness.png" alt="Light Icon" />
+          <i class="fa-solid fa-sun fa-xl"></i>
           <p>Light: {plant.plantCare.light}</p>
         </div>
         <div>
-          <img src="/icons/remperature.png" alt="Temperature Icon" />
+          <i class="fa-solid fa-temperature-high fa-xl"></i>
           <p>Temperature: {plant.plantCare.temperature}</p>
         </div>
         <div>
-          <img src="/icons/digging.png" alt="Fertilization Icon" />
+          <i class="fa-solid fa-flask-vial fa-xl"></i>
           <p>Fertilization: {plant.plantCare.fertilization}</p>
         </div>
       </div>
